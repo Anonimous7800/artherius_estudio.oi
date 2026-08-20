@@ -165,31 +165,55 @@
       <p class="section-desc">Accede al mainframe del experimento simulado. Escribe comandos para extraer información clasificada.</p>
     </div>
 
-    <div class="terminal-wrapper">
+    <div class="terminal-wrapper" id="terminal-wrapper">
       <div class="terminal-header">
         <div class="terminal-dots">
-          <span class="terminal-dot red"></span>
-          <span class="terminal-dot yellow"></span>
-          <span class="terminal-dot green"></span>
+          <span class="terminal-dot red" id="term-btn-clear" title="Limpiar Terminal (clear)"></span>
+          <span class="terminal-dot yellow" id="term-btn-expand" title="Alternar Tamaño (expand/collapse)"></span>
+          <span class="terminal-dot green" id="term-btn-theme" title="Cambiar Tema (green / red / cyan / amber)"></span>
         </div>
         <div class="terminal-title">
+          <span class="terminal-status-badge"><span class="status-pulse"></span> ONLINE</span>
           <i class="fa-solid fa-shield-halved"></i> UMBRELLA OS // MAINFRAME TERMINAL v4.09
         </div>
-        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">ARTERIOUS ESTUDIO SYSTEM</span>
+        <div class="terminal-tools">
+          <button class="term-tool-btn" id="term-btn-copy" title="Copiar logs de la consola"><i class="fa-solid fa-copy"></i></button>
+          <button class="term-tool-btn" id="term-btn-fullscreen" title="Modo Pantalla Completa"><i class="fa-solid fa-expand"></i></button>
+        </div>
+      </div>
+
+      <div class="terminal-quick-bar">
+        <span class="quick-bar-label"><i class="fa-solid fa-bolt"></i> COMANDOS RÁPIDOS:</span>
+        <div class="quick-chips-scroll">
+          <button class="term-chip" data-cmd="help"><i class="fa-solid fa-circle-question"></i> help</button>
+          <button class="term-chip" data-cmd="sujetos"><i class="fa-solid fa-users"></i> sujetos</button>
+          <button class="term-chip" data-cmd="solanum"><i class="fa-solid fa-biohazard"></i> solanum</button>
+          <button class="term-chip" data-cmd="scan"><i class="fa-solid fa-radar"></i> scan</button>
+          <button class="term-chip" data-cmd="status"><i class="fa-solid fa-chart-line"></i> status</button>
+          <button class="term-chip" data-cmd="lore"><i class="fa-solid fa-book"></i> lore</button>
+          <button class="term-chip" data-cmd="estudio"><i class="fa-solid fa-film"></i> estudio</button>
+          <button class="term-chip" data-cmd="matrix"><i class="fa-solid fa-code"></i> matrix</button>
+          <button class="term-chip" data-cmd="theme"><i class="fa-solid fa-palette"></i> theme</button>
+          <button class="term-chip" data-cmd="clear"><i class="fa-solid fa-broom"></i> clear</button>
+        </div>
       </div>
 
       <div class="terminal-body" id="terminal-body">
         <div class="terminal-line system-info">
-          [SISTEMA DE SEGURIDAD ARTERIOUS ESTUDIO INITIALIZED] - CONEXIÓN CON OUTBREAK CITY.
+          [SISTEMA DE SEGURIDAD ARTERIOUS ESTUDIO INITIALIZED] - CONEXIÓN ESTABLECIDA CON MAINFRAME OUTBREAK CITY.
         </div>
         <div class="terminal-line command-response">
-          Bienvenido al centro de comandos. Escribe <strong style="color: var(--accent-bio);">help</strong> para obtener una lista de comandos ejecutables (lore, estudio, solanum, sujetos, status, clear).
+          Bienvenido al centro de comandos. Haz clic en los <strong style="color: var(--accent-bio);">botones rápidos</strong> de arriba o escribe <strong style="color: var(--accent-cyan);">help</strong> para explorar expedientes clasificados.
         </div>
       </div>
 
       <div class="terminal-input-row">
         <span class="terminal-prompt">guest@umbrella-os:~$</span>
-        <input type="text" id="terminal-input" class="terminal-input-field" placeholder="Escribe un comando aquí (ej. help, estudio, lore)..." autocomplete="off">
+        <div class="input-wrapper">
+          <input type="text" id="terminal-input" class="terminal-input-field" placeholder="Escribe un comando aquí... (usa Tab para autocompletar, ↑/↓ para historial)" autocomplete="off" spellcheck="false">
+          <span class="input-hint" id="input-hint"></span>
+        </div>
+        <button id="terminal-send-btn" class="terminal-send-btn" title="Ejecutar Comando"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
   </section>

@@ -359,61 +359,323 @@ const participantsData = [
 
   const terminalInput = document.getElementById('terminal-input');
   const terminalBody = document.getElementById('terminal-body');
+  const terminalWrapper = document.getElementById('terminal-wrapper');
+  const inputHint = document.getElementById('input-hint');
+  const sendBtn = document.getElementById('terminal-send-btn');
 
   if (terminalInput && terminalBody) {
-    const commands = {
-      help: () => `COMANDOS DISPONIBLES:
- - lore : Resumen del expediente de Outbreak City
- - estudio : Información de Arterious Estudio
- - solanum : Información del virus Solanum
- - sujetos : Lista de sujetos de prueba capturados
- - status : Estado general de la simulación
- - clear : Limpia la pantalla de la terminal`,
+    const commandList = ['help', 'sujetos', 'solanum', 'scan', 'status', 'lore', 'estudio', 'matrix', 'theme', 'time', 'clear'];
+    const commandHistory = [];
+    let historyIndex = -1;
+    const themes = ['', 'theme-green', 'theme-cyan', 'theme-amber'];
+    let currentThemeIdx = 0;
 
-      estudio: () => `🎬 ARTERIOUS ESTUDIO:
-Estudio de producción de cine y eventos en Minecraft creador de Outbreak City — El Brote. Especializados en narrativas inmersivas, renders 3D y simulaciones de terror.`,
-
-      lore: () => `☣️ OUTBREAK CITY — EL BROTE (Producido por Arterious Estudio):
-Jere y Amarillo iban a casarse. Agentes de Umbrella irrumpieron en la boda, separando a los novios y capturando a todos los presentes. Outbreak City no era real, era una simulación masiva de Umbrella. Se liberó el virus Solanum y los sujetos fueron devueltos sin saberlo. El brote ha comenzado.`,
-
-      solanum: () => `☣️ VIRUS SOLANUM (NIVEL 4 DE PELIGROSIDAD):
-Cepa patógena biológica desarrollada por Umbrella. Causa pérdida irreversible del control cerebral, desorganización celular y agresividad extrema (zombificación).`,
-
-      sujetos: () => `SUJETOS EN SIMULACIÓN: ${participantsData.length} Sujetos de Prueba activos (${participantsData.map(p => p.name).join(', ')}).`,
-
-      status: () => `ESTADO DE SIMULACIÓN: [BROTE ACTIVO] | PRODUCCIÓN: ARTERIOUS ESTUDIO | OBSERVACIÓN: CIENTÍFICOS EN CONTROL DE CÁMARAS.`
-    };
-
-    function appendTerminalLine(text, className = 'command-response') {
+    function appendTerminalLine(content, className = 'command-response', isHTML = false) {
       const line = document.createElement('div');
       line.className = `terminal-line ${className}`;
-      line.textContent = text;
+      if (isHTML) {
+        line.innerHTML = content;
+      } else {
+        line.textContent = content;
+      }
       terminalBody.appendChild(line);
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
 
+    const commandHandlers = {
+      help: () => {
+        appendTerminalLine(`
+          <div class="terminal-card-output">
+            <div style="color: var(--accent-cyan); font-weight: bold; margin-bottom: 8px;">
+              <i class="fa-solid fa-terminal"></i> COMANDOS DISPONIBLES EN UMBRELLA OS:
+            </div>
+            <table class="terminal-table">
+              <thead>
+                <tr>
+                  <th>COMANDO</th>
+                  <th>DESCRIPCIÓN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong style="color: var(--accent-bio)">help</strong></td><td>Muestra esta lista de comandos clasificados.</td></tr>
+                <tr><td><strong style="color: var(--accent-bio)">sujetos</strong></td><td>Expedientes de los ${participantsData.length} sujetos de prueba activos.</td></tr>
+                <tr><td><strong style="color: var(--accent-red)">solanum</strong></td><td>Análisis del virus patógeno biológico Solanum.</td></tr>
+                <tr><td><strong style="color: var(--accent-cyan)">scan</strong></td><td>Ejecuta escaneo de radar de bioseguridad en el sector.</td></tr>
+                <tr><td><strong style="color: var(--accent-amber)">status</strong></td><td>Diagnóstico en tiempo real del mainframe y simulación.</td></tr>
+                <tr><td><strong style="color: var(--accent-cyan)">lore</strong></td><td>Historia completa del experimento Outbreak City.</td></tr>
+                <tr><td><strong style="color: var(--accent-bio)">estudio</strong></td><td>Ficha técnica de producción de Arterious Estudio.</td></tr>
+                <tr><td><strong style="color: var(--accent-amber)">matrix</strong></td><td>Secuencia de código fuente del sistema.</td></tr>
+                <tr><td><strong style="color: var(--accent-cyan)">theme</strong></td><td>Cambia el tema visual de la consola.</td></tr>
+                <tr><td><strong style="color: var(--accent-red)">clear</strong></td><td>Limpia los datos en pantalla de la terminal.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `, 'command-response', true);
+      },
+
+      sujetos: () => {
+        const rows = participantsData.map(p => 
+          `<tr><td>#${p.id}</td><td><strong>${p.name}</strong></td><td><span style="color: var(--accent-bio); font-size: 0.75rem;">${p.status}</span></td></tr>`
+        ).join('');
+
+        appendTerminalLine(`
+          <div class="terminal-card-output">
+            <div style="color: var(--accent-bio); font-weight: bold; margin-bottom: 6px;">
+              <i class="fa-solid fa-users-viewfinder"></i> REGISTRO DE SUJETOS EN SIMULACIÓN (${participantsData.length} TOTAL)
+            </div>
+            <table class="terminal-table">
+              <thead>
+                <tr><th>ID</th><th>NOMBRE</th><th>ESTADO</th></tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        `, 'command-response', true);
+      },
+
+      solanum: () => {
+        appendTerminalLine(`
+          <div class="terminal-card-output" style="border-color: var(--border-red); background: rgba(30, 10, 15, 0.8);">
+            <div style="color: var(--accent-red); font-weight: bold; font-size: 1rem; margin-bottom: 6px;">
+              <i class="fa-solid fa-biohazard"></i> INFORME BIOLÓGICO: CEPA SOLANUM (NIVEL 4)
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px;">
+              Agente patógeno neurotrópico desarrollado en laboratorios subterráneos de Umbrella Corp. Sustituye la actividad cerebral motora por impulsos primarios de agresión.
+            </p>
+            <div style="font-size: 0.78rem; display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <span>TASA DE TRANSMISIÓN:</span>
+              <strong style="color: var(--accent-red)">99.4% (EXTREMA)</strong>
+            </div>
+            <div class="terminal-progress-bar">
+              <div class="terminal-progress-fill" style="width: 99.4%;"></div>
+            </div>
+          </div>
+        `, 'command-response', true);
+      },
+
+      status: () => {
+        appendTerminalLine(`
+          <div class="terminal-card-output">
+            <div style="color: var(--accent-amber); font-weight: bold; margin-bottom: 8px;">
+              <i class="fa-solid fa-chart-line"></i> DIAGNÓSTICO DEL MAINFRAME — OUTBREAK CITY
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; font-size: 0.8rem;">
+              <div>ESTADO: <strong style="color: var(--accent-red);">BROTE ACTIVO</strong></div>
+              <div>SUJETOS: <strong style="color: var(--accent-bio);">${participantsData.length} EN RADAR</strong></div>
+              <div>PRODUCCIÓN: <strong style="color: var(--accent-cyan);">ARTERIOUS ESTUDIO</strong></div>
+              <div>SECTOR: <strong style="color: #fff;">ZONA CERO</strong></div>
+            </div>
+          </div>
+        `, 'command-response', true);
+      },
+
+      scan: () => {
+        appendTerminalLine(`[INICIANDO ESCANEO DE BIOSEGURIDAD EN SECTOR...]`, 'system-info');
+        AudioEngine.playBeep(900, 0.1, 'sawtooth');
+
+        setTimeout(() => {
+          appendTerminalLine(`[ANALIZANDO FRECUENCIAS DE SEÑAL VITAL... 45%]`, 'system-info');
+          AudioEngine.playBeep(1100, 0.1, 'sawtooth');
+        }, 400);
+
+        setTimeout(() => {
+          appendTerminalLine(`
+            <div class="terminal-card-output" style="border-color: var(--border-bio);">
+              <div style="color: var(--accent-bio); font-weight: bold;">
+                <i class="fa-solid fa-circle-check"></i> ESCANEO COMPLETADO: 12 ANOMALÍAS DETECTADAS EN OUTBREAK CITY.
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
+                Sujetos rastreados correctamente. Parámetros de bioseguridad estables.
+              </div>
+            </div>
+          `, 'command-response', true);
+          AudioEngine.playAlert();
+        }, 900);
+      },
+
+      lore: () => {
+        appendTerminalLine(`
+          <div class="terminal-card-output">
+            <div style="color: var(--accent-cyan); font-weight: bold; margin-bottom: 6px;">
+              <i class="fa-solid fa-book-journal-whills"></i> SINOPSIS CLASIFICADA — OUTBREAK CITY (Arterious Estudio)
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              La boda entre Jere y Amarillo fue interrumpida por fuerzas tácticas de Umbrella Corp. Todos los invitados fueron capturados e introducidos en la simulación urbana de Outbreak City. Con la liberación accidental de la cepa Solanum, la simulación se convirtió en una lucha real por la supervivencia.
+            </p>
+          </div>
+        `, 'command-response', true);
+      },
+
+      estudio: () => {
+        appendTerminalLine(`
+          <div class="terminal-card-output">
+            <div style="color: var(--accent-bio); font-weight: bold; margin-bottom: 6px;">
+              🎬 ARTERIOUS ESTUDIO PRODUCTIONS
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Estudio audiovisual especializado en cinemáticas 3D, simulaciones y narrativas de terror en Minecraft. Creadores de Outbreak City — El Brote.
+            </p>
+          </div>
+        `, 'command-response', true);
+      },
+
+      matrix: () => {
+        appendTerminalLine(`01000001 01010010 01010100 01000101 01010010 01001001 01001111 01010101 01010011`, 'matrix-line');
+        appendTerminalLine(`SYSTEM_OVERRIDE // UMBRELLA CORP MAINFRAME // ACCESS GRANTED`, 'matrix-line');
+        AudioEngine.playBeep(1200, 0.15, 'square');
+      },
+
+      theme: () => {
+        currentThemeIdx = (currentThemeIdx + 1) % themes.length;
+        if (terminalWrapper) {
+          terminalWrapper.className = `terminal-wrapper ${themes[currentThemeIdx]}`;
+        }
+        const themeName = themes[currentThemeIdx] ? themes[currentThemeIdx].replace('theme-', '').toUpperCase() : 'DEFAULT (RED)';
+        appendTerminalLine(`Tema visual de la consola actualizado a: ${themeName}`, 'system-info');
+      },
+
+      time: () => {
+        const now = new Date();
+        appendTerminalLine(`TIEMPO DEL MAINFRAME: ${now.toLocaleString()} (UTC-5)`, 'system-info');
+      },
+
+      clear: () => {
+        terminalBody.innerHTML = '';
+      }
+    };
+
+    function executeCommand(rawCmd) {
+      const inputVal = rawCmd.trim().toLowerCase();
+      if (!inputVal) return;
+
+      appendTerminalLine(`guest@umbrella-os:~$ ${rawCmd.trim()}`, 'command-prompt');
+      AudioEngine.playBeep(750, 0.04);
+
+      if (commandHistory[commandHistory.length - 1] !== rawCmd.trim()) {
+        commandHistory.push(rawCmd.trim());
+      }
+      historyIndex = commandHistory.length;
+
+      if (commandHandlers[inputVal]) {
+        commandHandlers[inputVal]();
+      } else {
+        appendTerminalLine(`Comando no reconocido: "${inputVal}". Haz clic en "help" para ver los comandos disponibles.`, 'error-msg');
+        AudioEngine.playBeep(350, 0.1, 'sawtooth');
+      }
+
+      if (inputHint) inputHint.textContent = '';
+    }
+
+    function updateInputHint() {
+      if (!inputHint) return;
+      const val = terminalInput.value.toLowerCase();
+      if (!val) {
+        inputHint.textContent = '';
+        return;
+      }
+      const match = commandList.find(cmd => cmd.startsWith(val));
+      if (match && match !== val) {
+        inputHint.textContent = match;
+      } else {
+        inputHint.textContent = '';
+      }
+    }
+
+    terminalInput.addEventListener('input', updateInputHint);
+
     terminalInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
-        const inputVal = terminalInput.value.trim().toLowerCase();
+        const val = terminalInput.value;
         terminalInput.value = '';
-
-        if (!inputVal) return;
-
-        appendTerminalLine(`> ${inputVal}`, 'terminal-prompt');
-        AudioEngine.playBeep(750, 0.04);
-
-        if (inputVal === 'clear') {
-          terminalBody.innerHTML = '';
-          return;
+        executeCommand(val);
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        const val = terminalInput.value.toLowerCase();
+        if (val) {
+          const match = commandList.find(cmd => cmd.startsWith(val));
+          if (match) {
+            terminalInput.value = match;
+            updateInputHint();
+          }
         }
-
-        if (commands[inputVal]) {
-          appendTerminalLine(commands[inputVal](), 'command-response');
+      } else if (e.key === 'ArrowUp') {
+        if (commandHistory.length > 0 && historyIndex > 0) {
+          historyIndex--;
+          terminalInput.value = commandHistory[historyIndex];
+          updateInputHint();
+        }
+      } else if (e.key === 'ArrowDown') {
+        if (historyIndex < commandHistory.length - 1) {
+          historyIndex++;
+          terminalInput.value = commandHistory[historyIndex];
+          updateInputHint();
         } else {
-          appendTerminalLine(`Comando no reconocido: "${inputVal}". Escribe "help" para ver los comandos disponibles.`, 'error-msg');
+          historyIndex = commandHistory.length;
+          terminalInput.value = '';
+          updateInputHint();
         }
       }
     });
+
+    if (sendBtn) {
+      sendBtn.addEventListener('click', () => {
+        const val = terminalInput.value;
+        terminalInput.value = '';
+        executeCommand(val);
+      });
+    }
+
+    // Quick Command Chips
+    document.querySelectorAll('.term-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const cmd = chip.getAttribute('data-cmd');
+        if (cmd) executeCommand(cmd);
+      });
+    });
+
+    // Toolbar Header Buttons
+    const clearBtn = document.getElementById('term-btn-clear');
+    const expandBtn = document.getElementById('term-btn-expand');
+    const themeBtn = document.getElementById('term-btn-theme');
+    const copyBtn = document.getElementById('term-btn-copy');
+    const fullscreenBtn = document.getElementById('term-btn-fullscreen');
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => executeCommand('clear'));
+    }
+
+    if (expandBtn) {
+      expandBtn.addEventListener('click', () => {
+        terminalWrapper.classList.toggle('expanded');
+        AudioEngine.playBeep(800, 0.04);
+      });
+    }
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => executeCommand('theme'));
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const text = terminalBody.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          appendTerminalLine('[LOGS COPIADOS CON ÉXITO AL PORTAPAPELES]', 'system-info');
+          AudioEngine.playBeep(950, 0.05);
+        }).catch(() => {
+          appendTerminalLine('[ERROR AL COPIAR LOGS]', 'error-msg');
+        });
+      });
+    }
+
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        terminalWrapper.classList.toggle('fullscreen');
+        fullscreenBtn.innerHTML = terminalWrapper.classList.contains('fullscreen') 
+          ? `<i class="fa-solid fa-compress"></i>` 
+          : `<i class="fa-solid fa-expand"></i>`;
+        AudioEngine.playBeep(850, 0.05);
+      });
+    }
   }
 
   if (menuToggle && navLinks) {
