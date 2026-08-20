@@ -4,6 +4,7 @@ const path = require('path');
 const rendersDir = path.join(__dirname, 'renders de participantes');
 const appJsPath = path.join(__dirname, 'app.js');
 const reglasTxtPath = path.join(__dirname, 'reglas e indicaciones.txt');
+const jsonPath = path.join(__dirname, 'participantes.json');
 
 if (!fs.existsSync(rendersDir)) {
   console.error('Directory "renders de participantes" not found!');
@@ -37,10 +38,13 @@ const participantsData = files.map((fileName, idx) => {
   };
 });
 
+// 1. Write participantes.json
+fs.writeFileSync(jsonPath, JSON.stringify(participantsData, null, 2), 'utf8');
+
+// 2. Sync into app.js
 let appJsContent = fs.readFileSync(appJsPath, 'utf8');
 const dataString = JSON.stringify(participantsData, null, 4);
 
-// 1. Sync participantsData
 const startTag = '// --- PARTICIPANTS_DATA_START ---';
 const endTag = '// --- PARTICIPANTS_DATA_END ---';
 
@@ -53,7 +57,7 @@ if (startIndex !== -1 && endIndex !== -1) {
     appJsContent.substring(endIndex);
 }
 
-// 2. Sync reglas e indicaciones.txt into window.REGLAS_TEXT
+// 3. Sync reglas e indicaciones.txt into window.REGLAS_TEXT
 let reglasText = '';
 if (fs.existsSync(reglasTxtPath)) {
   reglasText = fs.readFileSync(reglasTxtPath, 'utf8');
@@ -73,4 +77,4 @@ if (rStartIndex !== -1 && rEndIndex !== -1) {
 }
 
 fs.writeFileSync(appJsPath, appJsContent, 'utf8');
-console.log(`✅ Successfully updated app.js with ${files.length} renders and reglas text!`);
+console.log(`✅ Sincronización exitosa: ${files.length} renders registrados en app.js y participantes.json!`);

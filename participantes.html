@@ -110,6 +110,23 @@
           <i class="fa-solid fa-eye"></i> En Observación
         </button>
       </div>
+
+      <!-- Quick Drag & Drop / Upload Strip -->
+      <div class="renders-dropzone" id="renders-dropzone" style="border: 1px dashed var(--border-bio); background: rgba(0, 255, 136, 0.04); border-radius: 10px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-cloud-arrow-up" style="font-size: 1.5rem; color: var(--accent-bio);"></i>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 600; color: #fff;">Detector en Vivo & Subida Directa de Renders</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Arrastra una foto aquí o agrégala a la carpeta <code>renders de participantes</code></div>
+          </div>
+        </div>
+        <div>
+          <input type="file" id="render-upload-input" accept="image/png, image/jpeg, image/webp" multiple style="display: none;">
+          <button class="btn btn-outline" onclick="document.getElementById('render-upload-input').click();" style="padding: 6px 14px; font-size: 0.8rem; border-color: var(--accent-bio); color: var(--accent-bio);">
+            <i class="fa-solid fa-plus"></i> SELECCIONAR FOTO
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="renders-grid" id="renders-grid">

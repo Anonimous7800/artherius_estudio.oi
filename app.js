@@ -155,6 +155,14 @@ const participantsData = [
     },
     {
         "id": "06",
+        "name": "Fanahuvt 16",
+        "rawName": "fanahuvt16",
+        "file": "./renders de participantes/fanahuvt16.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "07",
         "name": "Ghostleu 08",
         "rawName": "ghostleu08",
         "file": "./renders de participantes/ghostleu08.png",
@@ -162,7 +170,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "07",
+        "id": "08",
         "name": "Johan 6",
         "rawName": "Johan6",
         "file": "./renders de participantes/Johan6.png",
@@ -170,7 +178,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "08",
+        "id": "09",
         "name": "Johan G 10",
         "rawName": "JohanG10",
         "file": "./renders de participantes/JohanG10.png",
@@ -178,7 +186,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "09",
+        "id": "10",
         "name": "Kevin 13",
         "rawName": "kevin13",
         "file": "./renders de participantes/kevin13.png",
@@ -186,7 +194,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "10",
+        "id": "11",
         "name": "Legassi 212",
         "rawName": "legassi_212",
         "file": "./renders de participantes/legassi_212.png",
@@ -194,7 +202,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "11",
+        "id": "12",
         "name": "Luuckykat 11",
         "rawName": "luuckykat11",
         "file": "./renders de participantes/luuckykat11.png",
@@ -202,7 +210,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "12",
+        "id": "13",
         "name": "Mateo Eck 14",
         "rawName": "mateo_eck14",
         "file": "./renders de participantes/mateo_eck14.png",
@@ -210,7 +218,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "13",
+        "id": "14",
         "name": "Soy Julio 1",
         "rawName": "soy_julio_1",
         "file": "./renders de participantes/soy_julio_1.png",
@@ -218,7 +226,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "14",
+        "id": "15",
         "name": "Zamora 9",
         "rawName": "zamora9",
         "file": "./renders de participantes/zamora9.png",
@@ -320,7 +328,91 @@ const participantsData = [
     updateCounters();
   }
 
-  if (rendersGrid) renderGallery(participantsData);
+  if (rendersGrid) {
+    renderGallery(participantsData);
+
+    // Dynamic fetch of participantes.json if served over HTTP/HTTPS/Localhost
+    fetch('./participantes.json?v=' + Date.now())
+      .then(res => res.json())
+      .then(jsonData => {
+        if (Array.isArray(jsonData) && jsonData.length > 0) {
+          participantsData.length = 0;
+          participantsData.push(...jsonData);
+          currentFilteredList = [...participantsData];
+          renderGallery(participantsData);
+          updateCounters();
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Quick Client-Side Photo Upload & Dropzone Handler
+  const photoUploadInput = document.getElementById('render-upload-input');
+  const dropZone = document.getElementById('renders-dropzone');
+
+  function handleUploadedFiles(files) {
+    if (!files || files.length === 0) return;
+    Array.from(files).forEach(file => {
+      if (!/\.(png|jpe?g|webp)$/i.test(file.name)) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const rawName = file.name.replace(/\.[^/.]+$/, "");
+        let formattedName = rawName
+          .replace(/_/g, ' ')
+          .replace(/([a-z])([A-Z])/g, '$1 $2')
+          .replace(/([A-Za-z]+)(\d+)/g, '$1 $2')
+          .replace(/\b\w/g, l => l.toUpperCase());
+
+        const id = String(participantsData.length + 1).padStart(2, '0');
+        const newParticipant = {
+          id,
+          name: formattedName,
+          rawName,
+          file: e.target.result,
+          status: 'NUEVO SUJETO / CARGADO',
+          type: 'humano'
+        };
+
+        participantsData.push(newParticipant);
+        currentFilteredList = [...participantsData];
+        renderGallery(participantsData);
+        updateCounters();
+        AudioEngine.playBeep(900, 0.1);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  if (photoUploadInput) {
+    photoUploadInput.addEventListener('change', (e) => {
+      handleUploadedFiles(e.target.files);
+    });
+  }
+
+  if (dropZone) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.classList.add('drag-active');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.classList.remove('drag-active');
+      });
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files) {
+        handleUploadedFiles(dt.files);
+      }
+    });
+  }
 
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
