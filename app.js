@@ -367,7 +367,7 @@ const participantsData = [
     const commandList = ['help', 'sujetos', 'solanum', 'scan', 'status', 'lore', 'estudio', 'matrix', 'theme', 'time', 'clear'];
     const commandHistory = [];
     let historyIndex = -1;
-    const themes = ['', 'theme-green', 'theme-cyan', 'theme-amber'];
+    const themes = ['', 'theme-green', 'theme-cyan', 'theme-amber', 'theme-red'];
     let currentThemeIdx = 0;
 
     function appendTerminalLine(content, className = 'command-response', isHTML = false) {
@@ -530,8 +530,15 @@ const participantsData = [
         if (terminalWrapper) {
           terminalWrapper.className = `terminal-wrapper ${themes[currentThemeIdx]}`;
         }
-        const themeName = themes[currentThemeIdx] ? themes[currentThemeIdx].replace('theme-', '').toUpperCase() : 'DEFAULT (RED)';
-        appendTerminalLine(`Tema visual de la consola actualizado a: ${themeName}`, 'system-info');
+        const themeLabels = {
+          '': 'ESTÁNDAR MAINFRAME',
+          'theme-green': 'VERDE MATRIX / CRT',
+          'theme-cyan': 'CIAN CIBERNÉTICO',
+          'theme-amber': 'ÁMBAR PROTOCOLO',
+          'theme-red': 'ROJO ALERTA BIOHAZARD'
+        };
+        const label = themeLabels[themes[currentThemeIdx]] || 'DESCONOCIDO';
+        appendTerminalLine(`[TEMA VISUAL DE CONSOLA ACTUALIZADO: ${label}]`, 'system-info');
       },
 
       time: () => {

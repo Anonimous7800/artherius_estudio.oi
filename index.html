@@ -183,18 +183,18 @@
       </div>
 
       <div class="terminal-quick-bar">
-        <span class="quick-bar-label"><i class="fa-solid fa-bolt"></i> COMANDOS RÁPIDOS:</span>
+        <span class="quick-bar-label"><i class="fa-solid fa-bolt"></i> COMANDOS:</span>
         <div class="quick-chips-scroll">
-          <button class="term-chip" data-cmd="help"><i class="fa-solid fa-circle-question"></i> help</button>
-          <button class="term-chip" data-cmd="sujetos"><i class="fa-solid fa-users"></i> sujetos</button>
-          <button class="term-chip" data-cmd="solanum"><i class="fa-solid fa-biohazard"></i> solanum</button>
-          <button class="term-chip" data-cmd="scan"><i class="fa-solid fa-radar"></i> scan</button>
-          <button class="term-chip" data-cmd="status"><i class="fa-solid fa-chart-line"></i> status</button>
-          <button class="term-chip" data-cmd="lore"><i class="fa-solid fa-book"></i> lore</button>
-          <button class="term-chip" data-cmd="estudio"><i class="fa-solid fa-film"></i> estudio</button>
-          <button class="term-chip" data-cmd="matrix"><i class="fa-solid fa-code"></i> matrix</button>
-          <button class="term-chip" data-cmd="theme"><i class="fa-solid fa-palette"></i> theme</button>
-          <button class="term-chip" data-cmd="clear"><i class="fa-solid fa-broom"></i> clear</button>
+          <button class="term-chip chip-green" data-cmd="help" title="Muestra la lista completa de comandos disponibles"><i class="fa-solid fa-circle-question"></i> help</button>
+          <button class="term-chip chip-green" data-cmd="sujetos" title="Lista los expedientes de todos los sujetos de prueba"><i class="fa-solid fa-users"></i> sujetos</button>
+          <button class="term-chip chip-red" data-cmd="solanum" title="Información biológica sobre el virus Solanum"><i class="fa-solid fa-biohazard"></i> solanum</button>
+          <button class="term-chip chip-cyan" data-cmd="scan" title="Escaneo de radar de bioseguridad en tiempo real"><i class="fa-solid fa-radar"></i> scan</button>
+          <button class="term-chip chip-amber" data-cmd="status" title="Estado de telemetría y salud del mainframe"><i class="fa-solid fa-chart-line"></i> status</button>
+          <button class="term-chip chip-cyan" data-cmd="lore" title="Resumen clasificado del experimento Outbreak City"><i class="fa-solid fa-book-skull"></i> lore</button>
+          <button class="term-chip chip-green" data-cmd="estudio" title="Ficha de producción de Arterious Estudio"><i class="fa-solid fa-film"></i> estudio</button>
+          <button class="term-chip chip-amber" data-cmd="matrix" title="Secuencia de override de código fuente"><i class="fa-solid fa-code"></i> matrix</button>
+          <button class="term-chip chip-amber" data-cmd="theme" title="Alternar el tema de color visual de la terminal"><i class="fa-solid fa-palette"></i> theme</button>
+          <button class="term-chip chip-red" data-cmd="clear" title="Limpiar la pantalla de la consola"><i class="fa-solid fa-broom"></i> clear</button>
         </div>
       </div>
 
@@ -203,17 +203,19 @@
           [SISTEMA DE SEGURIDAD ARTERIOUS ESTUDIO INITIALIZED] - CONEXIÓN ESTABLECIDA CON MAINFRAME OUTBREAK CITY.
         </div>
         <div class="terminal-line command-response">
-          Bienvenido al centro de comandos. Haz clic en los <strong style="color: var(--accent-bio);">botones rápidos</strong> de arriba o escribe <strong style="color: var(--accent-cyan);">help</strong> para explorar expedientes clasificados.
+          Bienvenido al centro de comandos. Haz clic en los <strong style="color: var(--accent-bio);">botones de comandos</strong> arriba o escribe un comando abajo para explorar la base de datos.
         </div>
       </div>
 
       <div class="terminal-input-row">
         <span class="terminal-prompt">guest@umbrella-os:~$</span>
         <div class="input-wrapper">
-          <input type="text" id="terminal-input" class="terminal-input-field" placeholder="Escribe un comando aquí... (usa Tab para autocompletar, ↑/↓ para historial)" autocomplete="off" spellcheck="false">
+          <input type="text" id="terminal-input" class="terminal-input-field" placeholder="Escribe un comando aquí... (Tab autocompleta, ↑/↓ historial)" autocomplete="off" spellcheck="false">
           <span class="input-hint" id="input-hint"></span>
         </div>
-        <button id="terminal-send-btn" class="terminal-send-btn" title="Ejecutar Comando"><i class="fa-solid fa-paper-plane"></i></button>
+        <button id="terminal-send-btn" class="terminal-send-btn" title="Ejecutar Comando en la consola">
+          <i class="fa-solid fa-play"></i> <span>EJECUTAR</span>
+        </button>
       </div>
     </div>
   </section>
