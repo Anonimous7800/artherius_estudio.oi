@@ -1274,6 +1274,18 @@ body {
   box-shadow: 0 0 10px var(--accent-red-glow);
 }
 
+.sound-toggle-btn.is-active {
+  background: rgba(0, 255, 204, 0.15) !important;
+  border-color: rgba(0, 255, 204, 0.4) !important;
+  color: var(--accent-bio) !important;
+}
+
+.sound-toggle-btn.is-active:hover {
+  background: var(--accent-bio) !important;
+  color: #050b14 !important;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.6) !important;
+}
+
 /* Offset body for fixed top ticker */
 body {
   padding-top: 28px;

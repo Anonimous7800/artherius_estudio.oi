@@ -3,28 +3,141 @@ document.addEventListener('DOMContentLoaded', () => {
   const AudioEngine = {
     ctx: null,
     enabled: false,
+    ambientOsc1: null,
+    ambientOsc2: null,
+    ambientGain: null,
+    ambientRunning: false,
 
     init() {
+      const savedState = localStorage.getItem('outbreak_sound_enabled');
+      this.enabled = savedState !== 'false';
+
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (AudioCtx) this.ctx = new AudioCtx();
       } catch (e) {
         console.warn('Web Audio API not supported');
       }
+
+      this.updateUI();
+
+      const unlockAudio = () => {
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume().then(() => {
+            if (this.enabled) this.startAmbient();
+          });
+        } else if (this.ctx && this.enabled && !this.ambientRunning) {
+          this.startAmbient();
+        }
+      };
+
+      ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
+        window.addEventListener(evt, unlockAudio, { once: false });
+      });
+    },
+
+    updateUI() {
+      const soundToggleBtn = document.getElementById('sound-toggle-btn');
+      if (!soundToggleBtn) return;
+
+      if (this.enabled) {
+        soundToggleBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> AUDIO: ACTIVO`;
+        soundToggleBtn.style.color = 'var(--accent-bio)';
+        soundToggleBtn.style.borderColor = 'rgba(0, 255, 204, 0.4)';
+        soundToggleBtn.style.background = 'rgba(0, 255, 204, 0.15)';
+        soundToggleBtn.classList.add('is-active');
+      } else {
+        soundToggleBtn.innerHTML = `<i class="fa-solid fa-volume-xmark"></i> AUDIO: SILENCIO`;
+        soundToggleBtn.style.color = 'var(--accent-red)';
+        soundToggleBtn.style.borderColor = 'var(--border-red)';
+        soundToggleBtn.style.background = 'rgba(255, 42, 75, 0.15)';
+        soundToggleBtn.classList.remove('is-active');
+      }
     },
 
     toggleSound() {
       this.enabled = !this.enabled;
-      if (this.enabled && this.ctx && this.ctx.state === 'suspended') {
-        this.ctx.resume();
+      localStorage.setItem('outbreak_sound_enabled', this.enabled ? 'true' : 'false');
+
+      if (this.enabled) {
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+        this.startAmbient();
+        this.playBeep(800, 0.05);
+      } else {
+        this.stopAmbient();
       }
-      this.playBeep(800, 0.05);
+
+      this.updateUI();
       return this.enabled;
+    },
+
+    startAmbient() {
+      if (!this.enabled || !this.ctx || this.ambientRunning) return;
+      try {
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+
+        const osc1 = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const filter = this.ctx.createBiquadFilter();
+        const gain = this.ctx.createGain();
+
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(55, this.ctx.currentTime);
+
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(110.5, this.ctx.currentTime);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(220, this.ctx.currentTime);
+
+        gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.015, this.ctx.currentTime + 2);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc1.start();
+        osc2.start();
+
+        this.ambientOsc1 = osc1;
+        this.ambientOsc2 = osc2;
+        this.ambientGain = gain;
+        this.ambientRunning = true;
+      } catch (e) {
+        console.warn('Could not start ambient drone:', e);
+      }
+    },
+
+    stopAmbient() {
+      if (!this.ambientRunning || !this.ambientGain) return;
+      try {
+        this.ambientGain.gain.setValueAtTime(this.ambientGain.gain.value, this.ctx.currentTime);
+        this.ambientGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.5);
+        setTimeout(() => {
+          if (this.ambientOsc1) { try { this.ambientOsc1.stop(); } catch(e){} }
+          if (this.ambientOsc2) { try { this.ambientOsc2.stop(); } catch(e){} }
+          this.ambientOsc1 = null;
+          this.ambientOsc2 = null;
+          this.ambientGain = null;
+          this.ambientRunning = false;
+        }, 500);
+      } catch (e) {
+        this.ambientRunning = false;
+      }
     },
 
     playBeep(freq = 600, duration = 0.08, type = 'sine') {
       if (!this.enabled || !this.ctx) return;
       try {
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = type;
@@ -49,22 +162,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const soundToggleBtn = document.getElementById('sound-toggle-btn');
   if (soundToggleBtn) {
-    soundToggleBtn.addEventListener('click', () => {
-      const state = AudioEngine.toggleSound();
-      soundToggleBtn.innerHTML = state 
-        ? `<i class="fa-solid fa-volume-high"></i> AUDIO: ACTIVO` 
-        : `<i class="fa-solid fa-volume-xmark"></i> AUDIO: SILENCIO`;
-      soundToggleBtn.style.color = state ? 'var(--accent-bio)' : 'var(--accent-red)';
+    soundToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      AudioEngine.toggleSound();
     });
   }
 
-  document.querySelectorAll('.btn, .category-card, .camera-btn, .filter-pill').forEach(btn => {
-    btn.addEventListener('click', () => AudioEngine.playBeep(650, 0.05));
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('.btn, .category-card, .camera-btn, .filter-pill, .nav-link, .participant-card, .rule-card, .tab-btn, button, a');
+    if (target && !target.closest('#sound-toggle-btn')) {
+      AudioEngine.playBeep(650, 0.04);
+    }
   });
 
 // --- REGLAS_TEXT_START ---
 window.REGLAS_TEXT = "";
-// --- REGLAS_TEXT_END ---
 
 // --- PARTICIPANTS_DATA_START ---
 const participantsData = [
