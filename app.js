@@ -447,7 +447,7 @@ const participantsData = [
                 <tr><td><strong style="color: var(--accent-cyan)">scan</strong></td><td>Ejecuta escaneo de radar de bioseguridad en el sector.</td></tr>
                 <tr><td><strong style="color: var(--accent-amber)">status</strong></td><td>Diagnóstico en tiempo real del mainframe y simulación.</td></tr>
                 <tr><td><strong style="color: var(--accent-cyan)">lore</strong></td><td>Historia completa del experimento Outbreak City.</td></tr>
-                <tr><td><strong style="color: var(--accent-bio)">estudio</strong></td><td>Ficha técnica de producción de Arterious Estudio.</td></tr>
+                <tr><td><strong style="color: var(--accent-bio)">estudio</strong></td><td>Ficha técnica de producción de ARTHERIUS STUDIO.</td></tr>
                 <tr><td><strong style="color: var(--accent-amber)">matrix</strong></td><td>Secuencia de código fuente del sistema.</td></tr>
                 <tr><td><strong style="color: var(--accent-cyan)">theme</strong></td><td>Cambia el tema visual de la consola.</td></tr>
                 <tr><td><strong style="color: var(--accent-red)">clear</strong></td><td>Limpia los datos en pantalla de la terminal.</td></tr>
@@ -506,7 +506,7 @@ const participantsData = [
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; font-size: 0.8rem;">
               <div>ESTADO: <strong style="color: var(--accent-red);">BROTE ACTIVO</strong></div>
               <div>SUJETOS: <strong style="color: var(--accent-bio);">${participantsData.length} EN RADAR</strong></div>
-              <div>PRODUCCIÓN: <strong style="color: var(--accent-cyan);">ARTERIOUS ESTUDIO</strong></div>
+              <div>PRODUCCIÓN: <strong style="color: var(--accent-cyan);">ARTHERIUS STUDIO</strong></div>
               <div>SECTOR: <strong style="color: #fff;">ZONA CERO</strong></div>
             </div>
           </div>
@@ -541,7 +541,7 @@ const participantsData = [
         appendTerminalLine(`
           <div class="terminal-card-output">
             <div style="color: var(--accent-cyan); font-weight: bold; margin-bottom: 6px;">
-              <i class="fa-solid fa-book-journal-whills"></i> SINOPSIS CLASIFICADA — OUTBREAK CITY (Arterious Estudio)
+              <i class="fa-solid fa-book-journal-whills"></i> SINOPSIS CLASIFICADA — OUTBREAK CITY (ARTHERIUS STUDIO)
             </div>
             <p style="font-size: 0.85rem; color: #cbd5e1;">
               La boda entre Jere y Amarillo fue interrumpida por fuerzas tácticas de Umbrella Corp. Todos los invitados fueron capturados e introducidos en la simulación urbana de Outbreak City. Con la liberación accidental de la cepa Solanum, la simulación se convirtió en una lucha real por la supervivencia.
@@ -554,7 +554,7 @@ const participantsData = [
         appendTerminalLine(`
           <div class="terminal-card-output">
             <div style="color: var(--accent-bio); font-weight: bold; margin-bottom: 6px;">
-              🎬 ARTERIOUS ESTUDIO PRODUCTIONS
+              🎬 ARTHERIUS STUDIO PRODUCTIONS
             </div>
             <p style="font-size: 0.85rem; color: #cbd5e1;">
               Estudio audiovisual especializado en cinemáticas 3D, simulaciones y narrativas de terror en Minecraft. Creadores de Outbreak City — El Brote.
@@ -798,7 +798,7 @@ const participantsData = [
         if (/virus|solanum|infecc|zombi|sintom|contagi|enfermedad/.test(lower)) return 'fa-vial-virus';
         if (/mapa|limit|perimetr|ciudad|zona|area|sect|ubicac/.test(lower)) return 'fa-map-location-dot';
         if (/pvp|combat|pelea|arma|muert|matar|suministr|luch/.test(lower)) return 'fa-skull-crossbones';
-        if (/render|foto|imagen|3d|model|arterious|dibujo|portada/.test(lower)) return 'fa-cube';
+        if (/render|foto|imagen|3d|model|artherius|dibujo|portada/.test(lower)) return 'fa-cube';
         if (/audio|voz|canal|micr|sonid|hablar|discord|transmi/.test(lower)) return 'fa-headset';
         if (/comunidad|respet|fair|play|norma|regla|admin|sancion/.test(lower)) return 'fa-shield-halved';
         if (/prohibid|ban|bloque|no /.test(lower)) return 'fa-ban';
