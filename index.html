@@ -45,6 +45,7 @@
     
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+      <li><a href="evento.html" class="nav-link"><i class="fa-solid fa-stopwatch"></i> Contador 9 PM</a></li>
       <li><a href="trailer.html" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Trailer</a></li>
       <li><a href="lore.html" class="nav-link"><i class="fa-solid fa-book-skull"></i> Lore & Brote</a></li>
       <li><a href="participantes.html" class="nav-link"><i class="fa-solid fa-users-viewfinder"></i> Participantes</a></li>
@@ -78,7 +79,25 @@
         Los sujetos de prueba han sido liberados tras la irrupción de Umbrella en la ceremonia de Jere y Amarillo... y el brote acaba de comenzar.
       </p>
 
-      <div class="hero-actions">
+      <!-- Live Event Mini Ticker Banner -->
+      <div class="event-cta-strip">
+        <div class="event-cta-info">
+          <span class="status-pulse" style="background: var(--accent-red); width: 12px; height: 12px;"></span>
+          <div style="text-align: left;">
+            <div style="font-size: 0.75rem; color: var(--accent-bio); font-family: var(--font-mono); letter-spacing: 1px;">
+              <i class="fa-solid fa-satellite-dish"></i> EVENTO OFICIAL A LAS 9:00 PM HORA PERÚ
+            </div>
+            <div style="font-size: 0.95rem; font-weight: bold; color: #fff;">
+              Tiempo restante: <span id="mini-hours">00</span>h <span id="mini-mins">00</span>m <span id="mini-secs">00</span>s
+            </div>
+          </div>
+        </div>
+        <a href="evento.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+          <i class="fa-solid fa-stopwatch"></i> VER CONTADOR EN VIVO
+        </a>
+      </div>
+
+      <div class="hero-actions" style="margin-top: 25px;">
         <a href="lore.html" class="btn btn-primary">
           <i class="fa-solid fa-book-skull"></i> EXPLORAR EL LORE
         </a>
@@ -92,7 +111,7 @@
 
       <div class="stats-bar">
         <div class="stat-item">
-          <span class="stat-value" id="count-renders">12</span>
+          <span class="stat-value" id="count-renders">13</span>
           <span class="stat-label">Sujetos de Prueba</span>
         </div>
         <div class="stat-divider"></div>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTADOR DEL EVENTO (9:00 PM HORA PERÚ) — Outbreak City | Artherius Studio</title>
+  
+  <meta name="description" content="Cuenta regresiva oficial en tiempo real para el evento Outbreak City — El Brote a las 9:00 PM Hora Perú. Alertas de horarios, conversión de zonas horarias y reglamento.">
+  <meta name="keywords" content="Contador Evento Minecraft, 9 PM Hora Peru, Outbreak City Countdown, Artherius Studio, Umbrella Corporation, Horario Evento">
+  
+  <link rel="icon" type="image/jpeg" href="./fondo.jpeg">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="umbrella-top-ticker">
+    <div class="ticker-item">
+      <span class="ticker-pulse"></span>
+      <span style="color: var(--accent-cyan); font-weight: 700;">ARTHERIUS STUDIO:</span> CONTEO REGRESIVO EN VIVO
+    </div>
+    <div class="ticker-item">
+      <i class="fa-solid fa-stopwatch-20" style="color: var(--accent-red);"></i>
+      <span>INICIO PROGRAMADO: <strong>9:00 PM (HORA PERÚ // UTC-5)</strong></span>
+    </div>
+    <div class="ticker-item">
+      <button class="sound-toggle-btn is-active" id="sound-toggle-btn" style="color: var(--accent-bio); border-color: rgba(0, 255, 204, 0.4); background: rgba(0, 255, 204, 0.15);">
+        <i class="fa-solid fa-volume-high"></i> AUDIO: ACTIVO
+      </button>
+      <span id="live-clock" style="margin-left: 10px;">00:00:00 UTC-5</span>
+    </div>
+  </div>
+
+  <div class="bg-scanlines"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar-brand">
+      <img src="./fondo.jpeg" alt="Outbreak City Logo" class="navbar-logo-img">
+      <div>
+        <div class="navbar-title">OUTBREAK <span>CITY</span></div>
+        <div class="studio-subtitle">BY ARTHERIUS STUDIO</div>
+      </div>
+    </a>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+      <li><a href="evento.html" class="nav-link active"><i class="fa-solid fa-stopwatch"></i> Contador 9 PM</a></li>
+      <li><a href="trailer.html" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Trailer</a></li>
+      <li><a href="lore.html" class="nav-link"><i class="fa-solid fa-book-skull"></i> Lore & Brote</a></li>
+      <li><a href="participantes.html" class="nav-link"><i class="fa-solid fa-users-viewfinder"></i> Participantes</a></li>
+      <li><a href="reglas.html" class="nav-link"><i class="fa-solid fa-scroll"></i> Reglas</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <section class="hero-section" style="min-height: 45vh; padding-top: 130px; padding-bottom: 30px;">
+    <div class="hero-bg-container">
+      <img src="./fondo.jpeg" alt="Contador Banner" class="hero-bg-image" style="filter: brightness(0.25) blur(2px);">
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="artherius-badge">
+        <i class="fa-solid fa-satellite-dish"></i> CRONOGRAMA DE OPERACIONES // ARTHERIUS STUDIO
+      </div>
+
+      <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-top: 10px;">
+        CUENTA REGRESIVA <span class="glitch-text">AL BROTE</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        El experimento de <strong>Outbreak City</strong> inicia oficialmente a las <strong>9:00 PM Hora Perú (UTC-5)</strong>. Monitorea el tiempo restante en tiempo real y recibe alertas de preparación.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px; padding-bottom: 50px;">
+    
+    <!-- Main Countdown HUD Box -->
+    <div class="countdown-main-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border-bottom: 1px solid var(--border-light); padding-bottom: 15px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="status-pulse" style="background: var(--accent-red);"></span>
+          <span style="font-family: var(--font-title); font-size: 1.1rem; color: #fff; letter-spacing: 1px;">
+            INICIO DEL EVENTO: <strong style="color: var(--accent-bio);">9:00 PM HORA PERÚ (UTC-5)</strong>
+          </span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-outline" id="test-alert-btn" style="padding: 6px 14px; font-size: 0.8rem;">
+            <i class="fa-solid fa-volume-high"></i> PROBAR ALARMA
+          </button>
+        </div>
+      </div>
+
+      <div class="countdown-grid">
+        <div class="timer-box">
+          <div class="timer-digit" id="timer-days">00</div>
+          <span class="timer-label">DÍAS</span>
+        </div>
+        <div class="timer-box">
+          <div class="timer-digit" id="timer-hours">00</div>
+          <span class="timer-label">HORAS</span>
+        </div>
+        <div class="timer-box">
+          <div class="timer-digit" id="timer-minutes">00</div>
+          <span class="timer-label">MINUTOS</span>
+        </div>
+        <div class="timer-box">
+          <div class="timer-digit" id="timer-seconds">00</div>
+          <span class="timer-label">SEGUNDOS</span>
+        </div>
+      </div>
+
+      <!-- Live Dynamic Status Warning Banner -->
+      <div id="event-status-banner" class="event-alert-banner alert-phase-info">
+        <div class="alert-icon-wrap">
+          <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div class="alert-text-wrap">
+          <h4>ESTADO: PREPARACIÓN Y CONVOCATORIA</h4>
+          <p>El evento oficial iniciará a las 9:00 PM Hora Perú (UTC-5). Los servidores y el staff están preparando la simulación de Outbreak City.</p>
+        </div>
+      </div>
+
+      <!-- Dual Live Clock Synchronization Bar -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border-light);">
+        <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 18px; border-radius: 10px; border-left: 3px solid var(--accent-bio);">
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">🇵🇪 HORA OFICIAL DEL EVENTO (PERÚ UTC-5):</div>
+          <div id="peru-time-display" style="font-family: var(--font-title); font-size: 1.25rem; color: var(--accent-bio); font-weight: bold; margin-top: 4px;">
+            09:00:00 PM (UTC-5)
+          </div>
+        </div>
+
+        <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 18px; border-radius: 10px; border-left: 3px solid var(--accent-cyan);">
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">🌐 TU HORA LOCAL ACTUAL (DISPOSITIVO):</div>
+          <div id="user-local-time-display" style="font-family: var(--font-title); font-size: 1.25rem; color: var(--accent-cyan); font-weight: bold; margin-top: 4px;">
+            --:--:--
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timezone Grid Section -->
+    <div class="section-header" style="margin-top: 40px; margin-bottom: 20px;">
+      <span class="section-tag"><i class="fa-solid fa-globe"></i> CONVERSIÓN INTERNACIONAL</span>
+      <h2 class="section-title">HORARIOS SEGÚN <span>TU PAÍS</span></h2>
+      <p class="section-desc">Revisa la hora exacta de inicio en tu país correspondiente a las 9:00 PM Hora Perú.</p>
+    </div>
+
+    <div class="timezone-grid">
+      <div class="tz-card highlight">
+        <span class="tz-flag">🇵🇪</span>
+        <div>
+          <div class="tz-country">Perú / Colombia / Ecuador</div>
+          <div class="tz-time">9:00 PM (21:00) <span style="font-size: 0.75rem; color: var(--accent-bio);">OFICIAL</span></div>
+        </div>
+      </div>
+
+      <div class="tz-card">
+        <span class="tz-flag">🇲🇽</span>
+        <div>
+          <div class="tz-country">México (CDMX / Monterrey)</div>
+          <div class="tz-time">8:00 PM (20:00)</div>
+        </div>
+      </div>
+
+      <div class="tz-card">
+        <span class="tz-flag">🇦🇷</span>
+        <div>
+          <div class="tz-country">Argentina / Chile / Uruguay</div>
+          <div class="tz-time">11:00 PM (23:00)</div>
+        </div>
+      </div>
+
+      <div class="tz-card">
+        <span class="tz-flag">🇧🇴</span>
+        <div>
+          <div class="tz-country">Bolivia / Venezuela / Paraguay</div>
+          <div class="tz-time">10:00 PM (22:00)</div>
+        </div>
+      </div>
+
+      <div class="tz-card">
+        <span class="tz-flag">🇪🇸</span>
+        <div>
+          <div class="tz-country">España (Madrid / Barcelona)</div>
+          <div class="tz-time">04:00 AM <span style="font-size: 0.7rem; color: var(--accent-amber);">(Día siguiente)</span></div>
+        </div>
+      </div>
+
+      <div class="tz-card">
+        <span class="tz-flag">🇺🇸</span>
+        <div>
+          <div class="tz-country">EE.UU. (Miami / New York - EST)</div>
+          <div class="tz-time">9:00 PM (21:00)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Itinerary Cards -->
+    <div class="section-header" style="margin-top: 50px; margin-bottom: 25px;">
+      <span class="section-tag"><i class="fa-solid fa-list-check"></i> CRONOGRAMA OFICIAL</span>
+      <h2 class="section-title">ITINERARIO DEL <span>DESPLIEGUE</span></h2>
+      <p class="section-desc">Paso a paso de la apertura de la simulación de Outbreak City.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; padding: 22px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="font-family: var(--font-mono); color: var(--accent-amber); font-weight: bold;">8:45 PM (UTC-5)</span>
+          <span style="font-size: 0.75rem; background: rgba(255, 170, 0, 0.2); color: var(--accent-amber); padding: 3px 8px; border-radius: 4px; font-weight: bold;">REGLA 17</span>
+        </div>
+        <h3 style="font-family: var(--font-title); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">
+          <i class="fa-solid fa-headset" style="color: var(--accent-amber);"></i> Conexión Obligatoria al Servidor
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Todos los participantes deberán encontrarse conectados al servidor y al canal de voz de Discord al menos <strong>15 minutos antes</strong> del inicio.
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-bio); border-radius: 12px; padding: 22px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="font-family: var(--font-mono); color: var(--accent-bio); font-weight: bold;">9:00 PM (UTC-5)</span>
+          <span style="font-size: 0.75rem; background: rgba(0, 255, 136, 0.2); color: var(--accent-bio); padding: 3px 8px; border-radius: 4px; font-weight: bold;">INICIO</span>
+        </div>
+        <h3 style="font-family: var(--font-title); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">
+          <i class="fa-solid fa-biohazard" style="color: var(--accent-bio);"></i> Liberación del Virus Solanum
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Comienzo de la simulación urbana en Outbreak City. Los sujetos de prueba son desplegados y la infección se activa en el mapa.
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-red); border-radius: 12px; padding: 22px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <span style="font-family: var(--font-mono); color: var(--accent-red); font-weight: bold;">9:15 PM (UTC-5)</span>
+          <span style="font-size: 0.75rem; background: rgba(255, 42, 75, 0.2); color: var(--accent-red); padding: 3px 8px; border-radius: 4px; font-weight: bold;">FASE CRÍTICA</span>
+        </div>
+        <h3 style="font-family: var(--font-title); font-size: 1.1rem; color: #fff; margin-bottom: 8px;">
+          <i class="fa-solid fa-skull-crossbones" style="color: var(--accent-red);"></i> Supervivencia & Transmisiones
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Monitoreo de cámaras de vigilancia y supervivencia de los humanos restantes en la ciudad infectada.
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Actions -->
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 45px;">
+      <a href="participantes.html" class="btn btn-primary">
+        <i class="fa-solid fa-users-viewfinder"></i> VER 13 PARTICIPANTES
+      </a>
+      <a href="reglas.html" class="btn btn-secondary">
+        <i class="fa-solid fa-scroll"></i> LEER REGLAMENTO OFICIAL
+      </a>
+      <a href="trailer.html" class="btn btn-outline">
+        <i class="fa-solid fa-clapperboard"></i> VER TRAILER
+      </a>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">ARTHERIUS STUDIO — OUTBREAK <span>CITY</span></div>
+    <p class="footer-text">
+      Producido por <strong>Artherius Studio</strong>. Todos los renders, cinemáticas y materiales audiovisuales pertenecen a Artherius Studio y la comunidad de Outbreak City.
+    </p>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="evento.html">Contador</a></li>
+      <li><a href="trailer.html">Trailer</a></li>
+      <li><a href="lore.html">Lore & Brote</a></li>
+      <li><a href="participantes.html">Participantes</a></li>
+      <li><a href="reglas.html">Reglas</a></li>
+    </ul>
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; margin-top: 15px; color: var(--accent-cyan);">
+      🎬 PRODUCCIÓN OFICIAL ARTHERIUS STUDIO — 2026
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

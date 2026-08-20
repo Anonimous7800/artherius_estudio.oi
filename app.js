@@ -108,7 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 // --- REGLAS_TEXT_START ---
-window.REGLAS_TEXT = "";
+window.REGLAS_TEXT = "📜 REGLAMENTO OFICIAL DEL EVENTO\r\n\r\nArtherius Studio  \r\n\r\nCon el objetivo de garantizar una experiencia organizada, justa y divertida para todos los participantes, el siguiente reglamento será de cumplimiento obligatorio durante todo el evento.\r\n\r\n1. Respeto entre participantes\r\nTodos los jugadores deberán mantener una actitud respetuosa hacia los demás participantes, organizadores y miembros del staff.\r\n\r\n2. Hacks y modificaciones\r\nEstá totalmente prohibido el uso de hacks, clientes modificados, x-ray, autoclickers, macros, scripts o cualquier herramienta que otorgue una ventaja injusta.\r\n\r\n3. Explotación de errores\r\nNo está permitido aprovechar bugs o fallos del servidor. Todo error encontrado deberá ser reportado inmediatamente al staff.\r\n\r\n4. Suplantación de identidad\r\nQueda prohibido hacerse pasar por un miembro del equipo organizador o del staff.\r\n\r\n5. Conducta en el chat\r\nNo se permite spam, flood, insultos, lenguaje ofensivo, discriminación, acoso ni publicidad de otros servidores o servicios.\r\n\r\n6. Uso de cuentas\r\nCada participante deberá utilizar únicamente su propia cuenta. El uso de cuentas alternativas para obtener ventajas podrá ser sancionado.\r\n\r\n7. Interferencia\r\nNo está permitido perjudicar intencionalmente el desarrollo del evento o interferir con otros participantes.\r\n\r\n8. Indicaciones del staff\r\nLas instrucciones del equipo organizador deberán seguirse en todo momento.\r\n\r\n9. Grabaciones y transmisiones\r\nTodos los participantes tienen permitido grabar el evento, tomar capturas de pantalla, realizar clips y transmitir en vivo (lives o streams) a través de cualquier plataforma. Todo el contenido generado deberá respetar este reglamento y no podrá utilizarse para acosar, difamar o perjudicar a otros participantes o al equipo organizador. Artherius Studio también podrá grabar, capturar, retransmitir y utilizar contenido del evento con fines promocionales, informativos o de archivo.\r\n\r\n10. Respeto a las decisiones\r\nLas decisiones tomadas por el staff durante el evento deberán respetarse. Cualquier reclamación deberá realizarse de forma educada y por los canales establecidos.\r\n\r\n11. Uso de exploits externos\r\nNo se permite el uso de programas, dispositivos o métodos externos que alteren el funcionamiento normal del juego o del servidor, aunque no sean considerados hacks.\r\n\r\n12. Sanciones\r\nEl incumplimiento de cualquiera de estas reglas podrá resultar en advertencias, expulsión del evento, descalificación o restricción para participar en futuros eventos organizados por Artherius Studio.\r\n\r\n13. Puntualidad\r\nLos participantes deberán presentarse antes del inicio del evento. El staff no está obligado a esperar a los jugadores que lleguen tarde sin previo aviso.\r\n\r\n14. Desobediencia al staff\r\nNegarse a seguir las indicaciones del equipo organizador o dificultar el trabajo del staff podrá ser motivo de sanción.\r\n\r\n15. Respeto a la modalidad\r\nCada participante deberá jugar de acuerdo con las reglas específicas de la modalidad del evento. Cualquier acción fuera de estas normas podrá ser considerada una infracción.\r\n\r\n16. Evidencias\r\nEl staff podrá solicitar pruebas o revisar grabaciones cuando sea necesario para resolver una disputa o investigar una posible infracción.\r\n\r\n17. Asistencia y puntualidad\r\nTodos los participantes deberán encontrarse conectados y disponibles al menos 15 minutos antes del inicio del evento.\r\nEn caso de no poder asistir o de llegar tarde por un motivo de fuerza mayor, el participante deberá informar al equipo organizador con la mayor anticipación posible. Si sabe con varios días de antelación que estará ocupado el día del evento, deberá comunicarlo previamente. Las ausencias o retrasos podrán ser justificadas siempre que el staff considere que la explicación es razonable.\r\n\r\n⚠️ Importante\r\nLa participación en este evento implica la aceptación total de este reglamento. El desconocimiento de las reglas no exime a ningún participante de las sanciones correspondientes.\r\n\r\n- Artherius Studio";
+// --- REGLAS_TEXT_END ---
 
 // --- PARTICIPANTS_DATA_START ---
 const participantsData = [
@@ -122,6 +123,14 @@ const participantsData = [
     },
     {
         "id": "02",
+        "name": "Alanlitras 15",
+        "rawName": "Alanlitras15",
+        "file": "./renders de participantes/Alanlitras15.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "03",
         "name": "Andressan 956.4",
         "rawName": "andressan_956.4",
         "file": "./renders de participantes/andressan_956.4.png",
@@ -129,7 +138,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "03",
+        "id": "04",
         "name": "Cilenxos 7",
         "rawName": "cilenxos_7",
         "file": "./renders de participantes/cilenxos_7.png",
@@ -137,7 +146,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "04",
+        "id": "05",
         "name": "El Fercho Cpm 3.1",
         "rawName": "el_fercho_cpm3.1",
         "file": "./renders de participantes/el_fercho_cpm3.1.png",
@@ -145,7 +154,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "05",
+        "id": "06",
         "name": "Ghostleu 08",
         "rawName": "ghostleu08",
         "file": "./renders de participantes/ghostleu08.png",
@@ -153,7 +162,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "06",
+        "id": "07",
         "name": "Johan 6",
         "rawName": "Johan6",
         "file": "./renders de participantes/Johan6.png",
@@ -161,7 +170,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "07",
+        "id": "08",
         "name": "Johan G 10",
         "rawName": "JohanG10",
         "file": "./renders de participantes/JohanG10.png",
@@ -169,7 +178,15 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "08",
+        "id": "09",
+        "name": "Kevin 13",
+        "rawName": "kevin13",
+        "file": "./renders de participantes/kevin13.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "10",
         "name": "Legassi 212",
         "rawName": "legassi_212",
         "file": "./renders de participantes/legassi_212.png",
@@ -177,7 +194,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "09",
+        "id": "11",
         "name": "Luuckykat 11",
         "rawName": "luuckykat11",
         "file": "./renders de participantes/luuckykat11.png",
@@ -185,7 +202,15 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "10",
+        "id": "12",
+        "name": "Mateo Eck 14",
+        "rawName": "mateo_eck14",
+        "file": "./renders de participantes/mateo_eck14.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "13",
         "name": "Soy Julio 1",
         "rawName": "soy_julio_1",
         "file": "./renders de participantes/soy_julio_1.png",
@@ -193,7 +218,7 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "11",
+        "id": "14",
         "name": "Zamora 9",
         "rawName": "zamora9",
         "file": "./renders de participantes/zamora9.png",
@@ -259,10 +284,12 @@ const participantsData = [
       card.className = 'render-card';
       card.setAttribute('data-name', participant.name.toLowerCase());
 
+      const safeSrc = encodeURI(participant.file);
+
       card.innerHTML = `
         <div class="render-img-wrapper">
           <span class="render-tag">SUJETO #${participant.id}</span>
-          <img src="${participant.file}" alt="Render de ${participant.name}" class="render-img" loading="lazy">
+          <img src="${safeSrc}" alt="Render de ${participant.name}" class="render-img" loading="lazy">
         </div>
         <div class="render-info">
           <div>
@@ -280,11 +307,9 @@ const participantsData = [
       const imgEl = card.querySelector('.render-img');
       if (imgEl) {
         imgEl.onerror = () => {
-          card.remove();
-          const pIndex = participantsData.indexOf(participant);
-          if (pIndex !== -1) participantsData.splice(pIndex, 1);
-          currentFilteredList = currentFilteredList.filter(p => p !== participant);
-          updateCounters();
+          imgEl.onerror = null;
+          imgEl.src = './fondo.jpeg';
+          imgEl.style.filter = 'grayscale(0.6) brightness(0.85)';
         };
       }
 
@@ -329,12 +354,16 @@ const participantsData = [
     const participant = currentFilteredList[currentModalIndex];
     if (!participant) return;
 
-    modalImg.src = participant.file;
+    modalImg.src = encodeURI(participant.file);
+    modalImg.onerror = () => {
+      modalImg.onerror = null;
+      modalImg.src = './fondo.jpeg';
+    };
     modalName.textContent = participant.name;
     modalTag.textContent = `SUJETO DE PRUEBA #${participant.id}`;
     modalStatus.textContent = participant.status;
     modalDesc.textContent = `Expediente clasificado de ${participant.name}. Capturado por agentes de Umbrella Corporation durante la irrupción en la ceremonia de boda. Devuelto a Outbreak City tras la liberación del virus Solanum.`;
-    modalDownload.href = participant.file;
+    modalDownload.href = encodeURI(participant.file);
     modalDownload.setAttribute('download', `${participant.name}_OutbreakCity_Render.png`);
 
     modalOverlay.classList.add('active');
@@ -850,5 +879,217 @@ const participantsData = [
         if (!window.REGLAS_TEXT) renderRules('');
       });
   }
+
+  // ==========================================================================
+  // EVENT COUNTDOWN ENGINE (9:00 PM HORA PERÚ // UTC-5)
+  // ==========================================================================
+  const CountdownEngine = {
+    timerInterval: null,
+    targetUtcMs: null,
+
+    getPeruNow() {
+      const now = new Date();
+      // UTC time in ms
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      // Peru is UTC-5
+      return new Date(utc + (-5 * 3600000));
+    },
+
+    getTargetDate() {
+      const customIso = localStorage.getItem('outbreak_custom_event_iso');
+      if (customIso) {
+        const customDate = new Date(customIso);
+        if (!isNaN(customDate.getTime())) return customDate;
+      }
+
+      // Default: Next 9:00 PM (21:00) Hora Perú
+      const peruNow = this.getPeruNow();
+      const target = new Date(peruNow);
+      target.setHours(21, 0, 0, 0);
+
+      // If today's 21:00 Peru time has already passed by more than 3 hours, set to next day 21:00
+      if (peruNow.getTime() - target.getTime() > 3 * 3600000) {
+        target.setDate(target.getDate() + 1);
+      }
+
+      // Convert target Peru time back to absolute UTC timestamp
+      // Peru is UTC-5, so UTC timestamp = Date.UTC(year, month, date, 21 + 5, 0, 0)
+      const targetUtcMs = Date.UTC(
+        target.getFullYear(),
+        target.getMonth(),
+        target.getDate(),
+        21 + 5, // 21:00 Peru + 5h = 02:00 UTC next day
+        0,
+        0
+      );
+
+      return new Date(targetUtcMs);
+    },
+
+    init() {
+      this.targetDate = this.getTargetDate();
+      this.update();
+      this.timerInterval = setInterval(() => this.update(), 1000);
+      this.setupControls();
+    },
+
+    setupControls() {
+      const testAlertBtn = document.getElementById('test-alert-btn');
+      if (testAlertBtn) {
+        testAlertBtn.addEventListener('click', () => {
+          AudioEngine.playAlert();
+          setTimeout(() => AudioEngine.playBeep(1100, 0.2, 'sawtooth'), 250);
+          setTimeout(() => AudioEngine.playBeep(1400, 0.3, 'sawtooth'), 500);
+        });
+      }
+
+      const customInput = document.getElementById('event-date-picker');
+      const applyBtn = document.getElementById('apply-date-btn');
+      const resetBtn = document.getElementById('reset-date-btn');
+
+      if (applyBtn && customInput) {
+        applyBtn.addEventListener('click', () => {
+          if (customInput.value) {
+            const chosen = new Date(customInput.value);
+            if (!isNaN(chosen.getTime())) {
+              localStorage.setItem('outbreak_custom_event_iso', chosen.toISOString());
+              this.targetDate = chosen;
+              AudioEngine.playBeep(900, 0.08);
+              this.update();
+            }
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          localStorage.removeItem('outbreak_custom_event_iso');
+          this.targetDate = this.getTargetDate();
+          if (customInput) customInput.value = '';
+          AudioEngine.playBeep(600, 0.08);
+          this.update();
+        });
+      }
+    },
+
+    update() {
+      const now = new Date();
+      const nowMs = now.getTime();
+      const targetMs = this.targetDate.getTime();
+      const diff = targetMs - nowMs;
+
+      // Update Peru Clock and Local Clock
+      const peruNow = this.getPeruNow();
+      const peruClockEl = document.getElementById('peru-time-display');
+      if (peruClockEl) {
+        peruClockEl.textContent = peruNow.toLocaleTimeString('es-PE', { hour12: true }) + ' (UTC-5)';
+      }
+
+      const localClockEl = document.getElementById('user-local-time-display');
+      if (localClockEl) {
+        localClockEl.textContent = now.toLocaleTimeString([], { hour12: true });
+      }
+
+      // Timer Digits Elements
+      const daysEl = document.getElementById('timer-days');
+      const hoursEl = document.getElementById('timer-hours');
+      const minsEl = document.getElementById('timer-minutes');
+      const secsEl = document.getElementById('timer-seconds');
+      const timerBoxes = document.querySelectorAll('.timer-box');
+
+      // Mini timer elements
+      const miniHoursEl = document.getElementById('mini-hours');
+      const miniMinsEl = document.getElementById('mini-mins');
+      const miniSecsEl = document.getElementById('mini-secs');
+
+      let days = 0, hours = 0, mins = 0, secs = 0;
+      let phaseClass = 'alert-phase-info';
+      let phaseIcon = 'fa-circle-info';
+      let phaseTitle = 'ESTADO: PREPARACIÓN & CONVOCATORIA';
+      let phaseDesc = 'El evento oficial iniciará a las 9:00 PM Hora Perú (UTC-5). Los servidores y el staff están preparando la simulación de Outbreak City.';
+      let isUrgent = false;
+
+      if (diff > 0) {
+        days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const totalMinutesLeft = Math.floor(diff / (1000 * 60));
+
+        if (totalMinutesLeft > 120) {
+          phaseClass = 'alert-phase-info';
+          phaseIcon = 'fa-satellite-dish';
+          phaseTitle = 'ESTADO: CONCENTRACIÓN Y REGISTRO';
+          phaseDesc = 'Revisa las fichas de los 13 participantes registrados y lee atentamente el reglamento oficial.';
+        } else if (totalMinutesLeft > 60) {
+          phaseClass = 'alert-phase-warning';
+          phaseIcon = 'fa-triangle-exclamation';
+          phaseTitle = '⚠️ ALERTA PREVIA: FALTAN MENOS DE 2 HORAS';
+          phaseDesc = 'Inicia la verificación de shaders, texturas y configuración de micrófono en Discord.';
+        } else if (totalMinutesLeft > 15) {
+          phaseClass = 'alert-phase-warning';
+          phaseIcon = 'fa-bell';
+          phaseTitle = '🚨 ALERTA: FALTAN MENOS DE 60 MINUTOS';
+          phaseDesc = 'Apertura inminente de los canales de espera. Conéctate a Discord y mantente atento a las indicaciones del staff.';
+          isUrgent = true;
+        } else {
+          phaseClass = 'alert-phase-critical';
+          phaseIcon = 'fa-biohazard';
+          phaseTitle = '☣️ PROTOCOLO REGLA #17: ÚLTIMOS 15 MINUTOS (INGRESO OBLIGATORIO)';
+          phaseDesc = '¡TODOS LOS PARTICIPANTES DEBEN ESTAR CONECTADOS AL SERVIDOR Y VOZ AHORA MISMO! (Regla oficial 17).';
+          isUrgent = true;
+        }
+      } else if (diff >= -3 * 3600000) {
+        // Event in progress (within 3 hours)
+        days = 0; hours = 0; mins = 0; secs = 0;
+        phaseClass = 'alert-phase-live';
+        phaseIcon = 'fa-tower-broadcast';
+        phaseTitle = '🔴 ¡EL EVENTO ESTÁ EN VIVO AHORA MISMO!';
+        phaseDesc = 'El virus Solanum ha sido liberado en Outbreak City. La simulación y las transmisiones están activas.';
+        isUrgent = true;
+      } else {
+        // Event concluded
+        days = 0; hours = 0; mins = 0; secs = 0;
+        phaseClass = 'alert-phase-info';
+        phaseIcon = 'fa-flag-checkered';
+        phaseTitle = 'SIMULACIÓN FINALIZADA';
+        phaseDesc = 'El evento ha concluido. Consulta las grabaciones y estadísticas en la sección de Trailer.';
+      }
+
+      if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+      if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+      if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+
+      if (miniHoursEl) miniHoursEl.textContent = String(days * 24 + hours).padStart(2, '0');
+      if (miniMinsEl) miniMinsEl.textContent = String(mins).padStart(2, '0');
+      if (miniSecsEl) miniSecsEl.textContent = String(secs).padStart(2, '0');
+
+      timerBoxes.forEach(box => {
+        if (isUrgent) {
+          box.classList.add('urgent');
+        } else {
+          box.classList.remove('urgent');
+        }
+      });
+
+      const alertBanner = document.getElementById('event-status-banner');
+      if (alertBanner) {
+        alertBanner.className = `event-alert-banner ${phaseClass}`;
+        alertBanner.innerHTML = `
+          <div class="alert-icon-wrap">
+            <i class="fa-solid ${phaseIcon}"></i>
+          </div>
+          <div class="alert-text-wrap">
+            <h4>${phaseTitle}</h4>
+            <p>${phaseDesc}</p>
+          </div>
+        `;
+      }
+    }
+  };
+
+  CountdownEngine.init();
 
 });
