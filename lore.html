@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LORE & EL BROTE — Outbreak City | Arterious Estudio</title>
+  
+  <meta name="description" content="Lee la historia completa y expedientes de Outbreak City producidos por Arterious Estudio. La boda de Jere y Amarillo, la gran simulación de Umbrella y la liberación del virus Solanum.">
+  <meta name="keywords" content="Arterious Estudio, Lore Outbreak City, Virus Solanum, Umbrella Corporation, Jere y Amarillo, Simulación Minecraft, Zombis Solanum">
+  
+  <link rel="icon" type="image/jpeg" href="./fondo.jpeg">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="umbrella-top-ticker">
+    <div class="ticker-item">
+      <span class="ticker-pulse"></span>
+      <span style="color: var(--accent-cyan); font-weight: 700;">ARTERIOUS ESTUDIO:</span> ACCESO A ARCHIVOS REGISTRADOS
+    </div>
+    <div class="ticker-item">
+      <i class="fa-solid fa-file-shield" style="color: var(--accent-bio);"></i>
+      <span>EXPEDIENTE CLASIFICADO: NIVEL 4 CLEARANCE</span>
+    </div>
+    <div class="ticker-item">
+      <button class="sound-toggle-btn" id="sound-toggle-btn">
+        <i class="fa-solid fa-volume-xmark"></i> AUDIO: SILENCIO
+      </button>
+      <span id="live-clock" style="margin-left: 10px;">00:00:00 UTC-5</span>
+    </div>
+  </div>
+
+  <div class="bg-scanlines"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar-brand">
+      <img src="./fondo.jpeg" alt="Outbreak City Logo" class="navbar-logo-img">
+      <div>
+        <div class="navbar-title">OUTBREAK <span>CITY</span></div>
+        <div class="studio-subtitle">BY ARTERIOUS ESTUDIO</div>
+      </div>
+    </a>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+      <li><a href="trailer.html" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Trailer</a></li>
+      <li><a href="lore.html" class="nav-link active"><i class="fa-solid fa-book-skull"></i> Lore & Brote</a></li>
+      <li><a href="participantes.html" class="nav-link"><i class="fa-solid fa-users-viewfinder"></i> Participantes</a></li>
+      <li><a href="reglas.html" class="nav-link"><i class="fa-solid fa-scroll"></i> Reglas</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <section class="hero-section" style="min-height: 45vh; padding-top: 130px; padding-bottom: 40px;">
+    <div class="hero-bg-container">
+      <img src="./fondo.jpeg" alt="Fondo Lore Outbreak City" class="hero-bg-image" style="filter: brightness(0.25) blur(3px);">
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="arterious-badge">
+        <i class="fa-solid fa-clapperboard"></i> PRODUCCIÓN DE NARRATIVA: ARTERIOUS ESTUDIO
+      </div>
+
+      <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-top: 10px;">
+        HISTORIA & <span class="glitch-text">LORE COMPLETO</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Conoce la verdad oculta tras la ceremonia de boda, la simulación masiva y la propagación del virus Solanum en Outbreak City.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px;">
+    <div class="section-header">
+      <span class="section-tag"><i class="fa-solid fa-timeline"></i> CRONOLOGÍA DE LOS HECHOS</span>
+      <h2 class="section-title">LOS CUATRO <span>CAPÍTULOS DEL BROTE</span></h2>
+      <p class="section-desc">Revisa paso a paso el reporte de los acontecimientos documentados por los científicos de Umbrella.</p>
+    </div>
+
+    <div class="lore-timeline">
+      
+      <div class="timeline-chapter">
+        <div class="timeline-badge">01</div>
+        <div class="chapter-content-card">
+          <div class="chapter-header">
+            <h3 class="chapter-title"><i class="fa-solid fa-ring" style="color: var(--accent-amber); margin-right: 8px;"></i> CAPÍTULO 01: LA BODA INTERRUMPIDA</h3>
+            <span class="chapter-tag"><i class="fa-solid fa-lock"></i> REGISTRO #001</span>
+          </div>
+          <p class="chapter-text">
+            <strong>Jere y Amarillo</strong> estaban a punto de casarse. Familiares, amigos e invitados se encontraban reunidos para celebrar el momento cuando, de repente, los agentes de Umbrella irrumpieron en la ceremonia. Sin dar explicaciones, comenzaron a llevarse a todas las personas que estaban allí. Jere fue separado de Amarillo y capturado junto con todos los demás.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-chapter chapter-bio">
+        <div class="timeline-badge">02</div>
+        <div class="chapter-content-card">
+          <div class="chapter-header">
+            <h3 class="chapter-title"><i class="fa-solid fa-city" style="color: var(--accent-bio); margin-right: 8px;"></i> CAPÍTULO 02: LA GRAN SIMULACIÓN</h3>
+            <span class="chapter-tag" style="color: var(--accent-bio); border-color: var(--border-bio);"><i class="fa-solid fa-microchip"></i> REVELACIÓN</span>
+          </div>
+          <p class="chapter-text">
+            Pero había algo que ninguno de ellos sabía: <strong>Outbreak City no era una ciudad real.</strong> Todo era una enorme simulación creada por Umbrella. Las calles, los edificios, las casas e incluso la boda formaban parte de un experimento. Los agentes llevaron a todos los capturados a las instalaciones de Umbrella, donde fueron identificados como <em>sujetos de prueba</em>.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-chapter">
+        <div class="timeline-badge">03</div>
+        <div class="chapter-content-card">
+          <div class="chapter-header">
+            <h3 class="chapter-title"><i class="fa-solid fa-vial-virus" style="color: var(--accent-red); margin-right: 8px;"></i> CAPÍTULO 03: LIBERACIÓN DEL SOLANUM</h3>
+            <span class="chapter-tag" style="color: var(--accent-red); border-color: var(--border-red);"><i class="fa-solid fa-biohazard"></i> INFECCIÓN</span>
+          </div>
+          <p class="chapter-text">
+            Antes de devolverlos a la ciudad, Umbrella inició la siguiente fase del experimento. Los científicos liberaron el virus <strong>Solanum</strong> dentro de Outbreak City. La infección comenzó a propagarse por las calles, edificios y zonas de la simulación. Cuando el virus ya se había extendido por la ciudad, Umbrella tomó la decisión de comenzar el experimento: los sujetos de prueba fueron devueltos y liberados en la ciudad sin saber que ya estaba infectada.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-chapter chapter-bio">
+        <div class="timeline-badge">04</div>
+        <div class="chapter-content-card">
+          <div class="chapter-header">
+            <h3 class="chapter-title"><i class="fa-solid fa-skull" style="color: var(--accent-bio); margin-right: 8px;"></i> CAPÍTULO 04: EL EXPERIMENTO PERFECTO</h3>
+            <span class="chapter-tag" style="color: var(--accent-bio); border-color: var(--border-bio);"><i class="fa-solid fa-eye"></i> OBSERVACIÓN</span>
+          </div>
+          <p class="chapter-text">
+            Al poco tiempo comenzaron a aparecer los primeros síntomas. Uno tras otro, los sujetos perdieron el control y se convirtieron en zombis. Los que aún permanecían humanos tuvieron que enfrentarse a una ciudad completamente infestada, sin saber que todo estaba siendo observado por Umbrella. Para los científicos, aquello no era una tragedia: <strong>era el experimento perfecto.</strong>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 10px; padding-bottom: 40px;">
+    <div class="full-lore-box">
+      <div class="full-lore-header">
+        <div class="full-lore-title">
+          <i class="fa-solid fa-file-medical"></i> TRANSCRIPCIÓN INTEGRAL DEL EXPEDIENTE UMBRELLA CORP.
+        </div>
+        <span style="font-family: var(--font-mono); color: var(--accent-red); font-size: 0.85rem;">[PRODUCCIÓN: ARTERIOUS ESTUDIO]</span>
+      </div>
+
+      <div class="full-lore-content">
+        <p>
+          <strong style="color: var(--accent-red); font-size: 1.1rem;">☣️ OUTBREAK CITY — EL BROTE</strong><br><br>
+          Jere y Amarillo estaban a punto de casarse. Familiares, amigos e invitados se encontraban reunidos para celebrar el momento cuando, de repente, los agentes de Umbrella irrumpieron en la ceremonia.
+        </p>
+        <p>
+          Sin dar explicaciones, comenzaron a llevarse a todas las personas que estaban allí. Jere fue separado de Amarillo y capturado junto con todos los demás. Pero había algo que ninguno de ellos sabía: <strong>Outbreak City no era una ciudad real.</strong> Todo era una enorme simulación creada por Umbrella. Las calles, los edificios, las casas e incluso la boda formaban parte de un experimento.
+        </p>
+        <p>
+          Los agentes llevaron a todos los capturados a las instalaciones de Umbrella. Allí fueron identificados como <em>sujetos de prueba</em>. Pero antes de devolverlos a la ciudad, Umbrella inició la siguiente fase del experimento.
+        </p>
+        <p>
+          <strong style="color: var(--accent-bio); font-size: 1.1rem;">☣️ LIBERACIÓN DEL SOLANUM</strong><br><br>
+          Los científicos de Umbrella liberaron el virus Solanum dentro de Outbreak City. La infección comenzó a propagarse por las calles, edificios y zonas de la simulación. Cuando el virus ya se había extendido por la ciudad, Umbrella tomó la decisión de comenzar el experimento. Los sujetos de prueba fueron devueltos a Outbreak City. Sin saber que la ciudad ya estaba infectada, fueron liberados nuevamente dentro de la simulación.
+        </p>
+        <p>
+          Al poco tiempo comenzaron a aparecer los primeros síntomas. Uno tras otro, los sujetos perdieron el control y se convirtieron en zombis. Los que aún permanecían humanos tuvieron que enfrentarse a una ciudad completamente infestada, sin saber que todo estaba siendo observado por Umbrella.
+        </p>
+        <div style="border-left: 3px solid var(--accent-red); padding-left: 20px; margin-top: 20px; font-style: italic; color: #fff; background: rgba(255,42,75,0.05); padding: 15px;">
+          Para los científicos, aquello no era una tragedia.<br>
+          <strong style="color: var(--accent-red); font-size: 1.1rem;">Era el experimento perfecto.</strong><br><br>
+          La ciudad era una simulación.<br>
+          El Solanum ya estaba dentro.<br>
+          Los sujetos habían sido liberados.<br>
+          Y el brote acababa de comenzar.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">ARTERIOUS ESTUDIO — OUTBREAK <span>CITY</span></div>
+    <p class="footer-text">
+      Producido por <strong>Arterious Estudio</strong>. Todos los renders, cinemáticas y materiales audiovisuales pertenecen a Arterious Estudio y la comunidad de Outbreak City.
+    </p>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="trailer.html">Trailer</a></li>
+      <li><a href="lore.html">Lore & Brote</a></li>
+      <li><a href="participantes.html">Participantes</a></li>
+      <li><a href="reglas.html">Reglas</a></li>
+    </ul>
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; margin-top: 15px; color: var(--accent-cyan);">
+      🎬 PRODUCCIÓN OFICIAL ARTERIOUS ESTUDIO — 2026
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

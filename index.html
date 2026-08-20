@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUTBREAK CITY — EL BROTE | Arterious Estudio</title>
+  
+  <meta name="description" content="Página oficial de Outbreak City — El Brote. Producido por Arterious Estudio. Explora el lore de la simulación de Umbrella Corporation, el virus Solanum, mira el trailer oficial y conoce a los sujetos de prueba.">
+  <meta name="keywords" content="Arterious Estudio, Minecraft, Outbreak City, El Brote, Umbrella Corporation, Solanum, Servidor Minecraft, Renders Minecraft, Survival Horror">
+  
+  <link rel="icon" type="image/jpeg" href="./fondo.jpeg">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="umbrella-top-ticker">
+    <div class="ticker-item">
+      <span class="ticker-pulse"></span>
+      <span style="color: var(--accent-cyan); font-weight: 700;">ARTERIOUS ESTUDIO:</span> OUTBREAK CITY SYSTEM
+    </div>
+    <div class="ticker-item">
+      <i class="fa-solid fa-vial-virus" style="color: var(--accent-bio);"></i>
+      <span>VIRUS SOLANUM: FASE DE PROPAGACIÓN</span>
+    </div>
+    <div class="ticker-item">
+      <button class="sound-toggle-btn" id="sound-toggle-btn">
+        <i class="fa-solid fa-volume-xmark"></i> AUDIO: SILENCIO
+      </button>
+      <span id="live-clock" style="margin-left: 10px;">00:00:00 UTC-5</span>
+    </div>
+  </div>
+
+  <div class="bg-scanlines"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar-brand">
+      <img src="./fondo.jpeg" alt="Outbreak City Logo" class="navbar-logo-img">
+      <div>
+        <div class="navbar-title">OUTBREAK <span>CITY</span></div>
+        <div class="studio-subtitle">BY ARTERIOUS ESTUDIO</div>
+      </div>
+    </a>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+      <li><a href="trailer.html" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Trailer</a></li>
+      <li><a href="lore.html" class="nav-link"><i class="fa-solid fa-book-skull"></i> Lore & Brote</a></li>
+      <li><a href="participantes.html" class="nav-link"><i class="fa-solid fa-users-viewfinder"></i> Participantes</a></li>
+      <li><a href="reglas.html" class="nav-link"><i class="fa-solid fa-scroll"></i> Reglas</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <section class="hero-section" id="hero">
+    <div class="hero-bg-container">
+      <img src="./fondo.jpeg" alt="Fondo del Servidor Outbreak City" class="hero-bg-image">
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="arterious-badge">
+        <i class="fa-solid fa-clapperboard"></i> PRODUCIDO POR ARTERIOUS ESTUDIO
+      </div>
+
+      <h1 class="hero-title" style="margin-top: 10px;">
+        OUTBREAK <span class="glitch-text">CITY</span>
+        <br>
+        <span style="font-size: 0.6em; color: var(--accent-red); letter-spacing: 4px;">— EL BROTE —</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        La ciudad era una <strong>simulación</strong>. El virus <strong>Solanum</strong> ya estaba dentro.
+        Los sujetos de prueba han sido liberados tras la irrupción de Umbrella en la ceremonia de Jere y Amarillo... y el brote acaba de comenzar.
+      </p>
+
+      <div class="hero-actions">
+        <a href="lore.html" class="btn btn-primary">
+          <i class="fa-solid fa-book-skull"></i> EXPLORAR EL LORE
+        </a>
+        <a href="trailer.html" class="btn btn-secondary">
+          <i class="fa-solid fa-play"></i> VER TRAILER OFICIAL
+        </a>
+        <a href="participantes.html" class="btn btn-outline">
+          <i class="fa-solid fa-users-viewfinder"></i> SUJETOS DE PRUEBA
+        </a>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-value" id="count-renders">12</span>
+          <span class="stat-label">Sujetos de Prueba</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value" style="color: var(--accent-red);">SOLANUM</span>
+          <span class="stat-label">Virus Liberado</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value" style="color: var(--accent-cyan);">SIMULACIÓN</span>
+          <span class="stat-label">Estado de Ciudad</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value" style="color: var(--accent-amber);">CRÍTICO</span>
+          <span class="stat-label">Fase del Brote</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 30px; padding-bottom: 20px;">
+    <div class="section-header" style="margin-bottom: 20px;">
+      <span class="section-tag"><i class="fa-solid fa-radar"></i> MONITOREO DE BIO-SEGURIDAD</span>
+      <h2 class="section-title">ESCÁNER EN VIVO <span>DE INFECCIÓN</span></h2>
+      <p class="section-desc">Radar táctico desplegado por <strong>Arterious Estudio</strong> para rastrear amanezas biológicas en tiempo real.</p>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+      
+      <div class="radar-container">
+        <div class="radar-grid-line h"></div>
+        <div class="radar-grid-line v"></div>
+        <div class="radar-circle c1"></div>
+        <div class="radar-circle c2"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-blip" style="top: 30%; left: 60%;"></div>
+        <div class="radar-blip" style="top: 70%; left: 40%; animation-delay: 0.5s;"></div>
+        <div class="radar-blip" style="top: 45%; left: 25%; animation-delay: 1.2s;"></div>
+        <div class="radar-blip" style="top: 80%; left: 75%; animation-delay: 0.8s;"></div>
+      </div>
+
+      <div style="max-width: 450px; background: var(--bg-panel); border: 1px solid var(--border-bio); border-radius: 12px; padding: 25px;">
+        <h3 style="font-family: var(--font-title); color: var(--accent-bio); font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+          <i class="fa-solid fa-satellite-dish"></i> TELEMETRÍA DE AMENAZAS
+        </h3>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">
+          <li style="display: flex; justify-content: space-between;">
+            <span>AMENAZA BIOLÓGICA:</span> <strong style="color: var(--accent-red);">CEPA SOLANUM (NIVEL 4)</strong>
+          </li>
+          <li style="display: flex; justify-content: space-between;">
+            <span>RADAR DE SECTOR:</span> <strong style="color: var(--accent-bio);">OUTBREAK CITY MAIN ZONE</strong>
+          </li>
+          <li style="display: flex; justify-content: space-between;">
+            <span>SUJETOS RASTREADOS:</span> <strong style="color: #fff;">12 SUJETOS EN MAPA</strong>
+          </li>
+          <li style="display: flex; justify-content: space-between;">
+            <span>PRODUCCIÓN TÉCNICA:</span> <strong style="color: var(--accent-cyan);">ARTERIOUS ESTUDIO</strong>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px; padding-bottom: 20px;">
+    <div class="section-header" style="margin-bottom: 15px;">
+      <span class="section-tag"><i class="fa-solid fa-terminal"></i> CONSOLA CLASIFICADA</span>
+      <h2 class="section-title">TERMINAL <span>UMBRELLA CORP.</span></h2>
+      <p class="section-desc">Accede al mainframe del experimento simulado. Escribe comandos para extraer información clasificada.</p>
+    </div>
+
+    <div class="terminal-wrapper">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-title">
+          <i class="fa-solid fa-shield-halved"></i> UMBRELLA OS // MAINFRAME TERMINAL v4.09
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">ARTERIOUS ESTUDIO SYSTEM</span>
+      </div>
+
+      <div class="terminal-body" id="terminal-body">
+        <div class="terminal-line system-info">
+          [SISTEMA DE SEGURIDAD ARTERIOUS ESTUDIO INITIALIZED] - CONEXIÓN CON OUTBREAK CITY.
+        </div>
+        <div class="terminal-line command-response">
+          Bienvenido al centro de comandos. Escribe <strong style="color: var(--accent-bio);">help</strong> para obtener una lista de comandos ejecutables (lore, estudio, solanum, sujetos, status, clear).
+        </div>
+      </div>
+
+      <div class="terminal-input-row">
+        <span class="terminal-prompt">guest@umbrella-os:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input-field" placeholder="Escribe un comando aquí (ej. help, estudio, lore)..." autocomplete="off">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="categorias" style="padding-top: 40px; padding-bottom: 50px;">
+    <div class="section-header" style="margin-bottom: 30px;">
+      <span class="section-tag"><i class="fa-solid fa-layer-group"></i> NAVEGACIÓN PRINCIPAL</span>
+      <h2 class="section-title">CATEGORÍAS DE <span>OUTBREAK CITY</span></h2>
+      <p class="section-desc">Selecciona una de las secciones principales producidas por <strong>Arterious Estudio</strong>.</p>
+    </div>
+
+    <div class="categories-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      <a href="trailer.html" class="category-card cat-red">
+        <div class="category-badge">CATEGORÍA 01</div>
+        <div class="category-icon"><i class="fa-solid fa-clapperboard"></i></div>
+        <h3 class="category-title">TRAILER & TRANSMISIÓN</h3>
+        <p class="category-desc">Sala de vigilancia con la transmisión de las cámaras de seguridad de Umbrella durante el brote.</p>
+        <span class="category-link-btn">ENTRAR A TRANSMISIÓN <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a href="lore.html" class="category-card cat-bio">
+        <div class="category-badge">CATEGORÍA 02</div>
+        <div class="category-icon"><i class="fa-solid fa-book-journal-whills"></i></div>
+        <h3 class="category-title">HISTORIA & LORE COMPLETO</h3>
+        <p class="category-desc">Expedientes clasificados: La Boda Interrumpida, la Simulación y la liberación del Solanum.</p>
+        <span class="category-link-btn">LEER EXPEDIENTE <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a href="participantes.html" class="category-card cat-amber">
+        <div class="category-badge">CATEGORÍA 03</div>
+        <div class="category-icon"><i class="fa-solid fa-users-gear"></i></div>
+        <h3 class="category-title">RENDERS DE PARTICIPANTES</h3>
+        <p class="category-desc">Fichas técnicas y modelos 3D en alta resolución de los sujetos de prueba capturados.</p>
+        <span class="category-link-btn">VER SUJETOS DE PRUEBA <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a href="reglas.html" class="category-card cat-cyan">
+        <div class="category-badge">CATEGORÍA 04</div>
+        <div class="category-icon"><i class="fa-solid fa-scroll"></i></div>
+        <h3 class="category-title">REGLAS E INDICACIONES</h3>
+        <p class="category-desc">Normativa oficial de la simulación, guía de supervivencia y mecánicas del Solanum.</p>
+        <span class="category-link-btn">VER REGLAMENTO <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">ARTERIOUS ESTUDIO — OUTBREAK <span>CITY</span></div>
+    <p class="footer-text">
+      Producido por <strong>Arterious Estudio</strong>. Todos los renders, cinemáticas y materiales audiovisuales pertenecen a Arterious Estudio y la comunidad de Outbreak City.
+    </p>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="trailer.html">Trailer</a></li>
+      <li><a href="lore.html">Lore & Brote</a></li>
+      <li><a href="participantes.html">Participantes</a></li>
+      <li><a href="reglas.html">Reglas</a></li>
+    </ul>
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; margin-top: 15px; color: var(--accent-cyan);">
+      🎬 PRODUCCIÓN OFICIAL ARTERIOUS ESTUDIO — 2026
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

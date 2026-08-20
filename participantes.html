@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RENDERS DE PARTICIPANTES — Outbreak City | Arterious Estudio</title>
+  
+  <meta name="description" content="Galería de los sujetos de prueba capturados en Outbreak City. Renders 3D producidos por Arterious Estudio. Explora modelos en HD, fichas técnicas y descargas.">
+  <meta name="keywords" content="Arterious Estudio, Renders Minecraft, Participantes Outbreak City, Sujetos de Prueba, Models 3D Minecraft, Solanum Virus Renders">
+  
+  <link rel="icon" type="image/jpeg" href="./fondo.jpeg">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="umbrella-top-ticker">
+    <div class="ticker-item">
+      <span class="ticker-pulse"></span>
+      <span style="color: var(--accent-cyan); font-weight: 700;">ARTERIOUS ESTUDIO:</span> SUJETOS EN BASE DE DATOS
+    </div>
+    <div class="ticker-item">
+      <i class="fa-solid fa-dna" style="color: var(--accent-amber);"></i>
+      <span>RENDERS 3D EN ALTA DEFINICIÓN</span>
+    </div>
+    <div class="ticker-item">
+      <button class="sound-toggle-btn" id="sound-toggle-btn">
+        <i class="fa-solid fa-volume-xmark"></i> AUDIO: SILENCIO
+      </button>
+      <span id="live-clock" style="margin-left: 10px;">00:00:00 UTC-5</span>
+    </div>
+  </div>
+
+  <div class="bg-scanlines"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="navbar-brand">
+      <img src="./fondo.jpeg" alt="Outbreak City Logo" class="navbar-logo-img">
+      <div>
+        <div class="navbar-title">OUTBREAK <span>CITY</span></div>
+        <div class="studio-subtitle">BY ARTERIOUS ESTUDIO</div>
+      </div>
+    </a>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+      <li><a href="trailer.html" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Trailer</a></li>
+      <li><a href="lore.html" class="nav-link"><i class="fa-solid fa-book-skull"></i> Lore & Brote</a></li>
+      <li><a href="participantes.html" class="nav-link active"><i class="fa-solid fa-users-viewfinder"></i> Participantes</a></li>
+      <li><a href="reglas.html" class="nav-link"><i class="fa-solid fa-scroll"></i> Reglas</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <section class="hero-section" style="min-height: 40vh; padding-top: 130px; padding-bottom: 30px;">
+    <div class="hero-bg-container">
+      <img src="./fondo.jpeg" alt="Participantes Banner" class="hero-bg-image" style="filter: brightness(0.25) blur(2px);">
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="arterious-badge">
+        <i class="fa-solid fa-cube"></i> RENDERS 3D POR ARTERIOUS ESTUDIO
+      </div>
+
+      <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-top: 10px;">
+        RENDERS DE <span class="glitch-text">PARTICIPANTES</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Inspecciona las fichas técnicas y modelos 3D producidos por <strong>Arterious Estudio</strong> para los sujetos de prueba capturados en la simulación.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="participantes" style="padding-top: 20px; padding-bottom: 60px;">
+    <div class="section-header" style="margin-bottom: 20px;">
+      <span class="section-tag"><i class="fa-solid fa-fingerprint"></i> ESCÁNER DE SUJETOS</span>
+      <h2 class="section-title">SUJETOS DE PRUEBA <span>REGISTRADOS</span></h2>
+      <p class="section-desc">Filtra por nombre o estado de infección para acceder a cada expediente clasificado.</p>
+    </div>
+
+    <div class="gallery-controls" style="flex-direction: column; align-items: stretch; gap: 15px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div class="search-box" style="flex: 1; min-width: 280px;">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="render-search" class="search-input" placeholder="Buscar participante por nombre (ej. Johan, Julio, Zamora)...">
+        </div>
+        <div class="gallery-count">
+          MOSTRANDO <span id="visible-count" style="color: var(--accent-bio); font-weight: bold;">12</span> DE RENDERS HD
+        </div>
+      </div>
+
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">
+          <i class="fa-solid fa-border-all"></i> Todos (<span id="total-pill-count">11</span>)
+        </button>
+        <button class="filter-pill" data-filter="humano">
+          <i class="fa-solid fa-user-shield"></i> Sobrevivientes / Humanos
+        </button>
+        <button class="filter-pill" data-filter="sintomatico">
+          <i class="fa-solid fa-biohazard"></i> Sintomáticos
+        </button>
+        <button class="filter-pill" data-filter="observacion">
+          <i class="fa-solid fa-eye"></i> En Observación
+        </button>
+      </div>
+    </div>
+
+    <div class="renders-grid" id="renders-grid">
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="render-modal">
+    <div class="modal-content" style="position: relative;">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+
+      <button class="modal-nav-btn modal-nav-prev" id="modal-prev" aria-label="Sujeto anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="modal-nav-btn modal-nav-next" id="modal-next" aria-label="Sujeto siguiente">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="modal-body">
+        <div class="modal-img-container">
+          <img src="" alt="Minecraft Render" id="modal-img" class="modal-img">
+        </div>
+        <div class="modal-details">
+          <span class="modal-subject-tag" id="modal-tag">SUJETO #01</span>
+          <h2 class="modal-subject-name" id="modal-name">Nombre Participante</h2>
+          <div class="modal-subject-status">
+            <span>Estado:</span> <strong id="modal-status" style="color: var(--accent-bio);">SURVIVOR / UNINFECTED</strong>
+          </div>
+          <p class="modal-desc" id="modal-desc">
+            Sujeto registrado en la simulación de Outbreak City durante la irrupción de Umbrella Corporation en la ceremonia. Render producido por Arterious Estudio.
+          </p>
+          <a href="#" id="modal-download" download class="btn btn-primary" style="margin-top: 15px; text-align: center;">
+            <i class="fa-solid fa-download"></i> DESCARGAR RENDER HD (PNG)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">ARTERIOUS ESTUDIO — OUTBREAK <span>CITY</span></div>
+    <p class="footer-text">
+      Producido por <strong>Arterious Estudio</strong>. Todos los renders, cinemáticas y materiales audiovisuales pertenecen a Arterious Estudio y la comunidad de Outbreak City.
+    </p>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="trailer.html">Trailer</a></li>
+      <li><a href="lore.html">Lore & Brote</a></li>
+      <li><a href="participantes.html">Participantes</a></li>
+      <li><a href="reglas.html">Reglas</a></li>
+    </ul>
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; margin-top: 15px; color: var(--accent-cyan);">
+      🎬 PRODUCCIÓN OFICIAL ARTERIOUS ESTUDIO — 2026
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
