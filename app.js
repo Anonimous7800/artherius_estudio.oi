@@ -3,10 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const AudioEngine = {
     ctx: null,
     enabled: false,
-    ambientOsc1: null,
-    ambientOsc2: null,
-    ambientGain: null,
-    ambientRunning: false,
 
     init() {
       const savedState = localStorage.getItem('outbreak_sound_enabled');
@@ -23,16 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const unlockAudio = () => {
         if (this.ctx && this.ctx.state === 'suspended') {
-          this.ctx.resume().then(() => {
-            if (this.enabled) this.startAmbient();
-          });
-        } else if (this.ctx && this.enabled && !this.ambientRunning) {
-          this.startAmbient();
+          this.ctx.resume();
         }
       };
 
-      ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
-        window.addEventListener(evt, unlockAudio, { once: false });
+      ['click', 'keydown', 'touchstart'].forEach(evt => {
+        window.addEventListener(evt, unlockAudio, { once: true });
       });
     },
 
@@ -63,76 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (this.ctx && this.ctx.state === 'suspended') {
           this.ctx.resume();
         }
-        this.startAmbient();
         this.playBeep(800, 0.05);
-      } else {
-        this.stopAmbient();
       }
 
       this.updateUI();
       return this.enabled;
     },
 
-    startAmbient() {
-      if (!this.enabled || !this.ctx || this.ambientRunning) return;
-      try {
-        if (this.ctx.state === 'suspended') {
-          this.ctx.resume();
-        }
-
-        const osc1 = this.ctx.createOscillator();
-        const osc2 = this.ctx.createOscillator();
-        const filter = this.ctx.createBiquadFilter();
-        const gain = this.ctx.createGain();
-
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(55, this.ctx.currentTime);
-
-        osc2.type = 'triangle';
-        osc2.frequency.setValueAtTime(110.5, this.ctx.currentTime);
-
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(220, this.ctx.currentTime);
-
-        gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.015, this.ctx.currentTime + 2);
-
-        osc1.connect(filter);
-        osc2.connect(filter);
-        filter.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        osc1.start();
-        osc2.start();
-
-        this.ambientOsc1 = osc1;
-        this.ambientOsc2 = osc2;
-        this.ambientGain = gain;
-        this.ambientRunning = true;
-      } catch (e) {
-        console.warn('Could not start ambient drone:', e);
-      }
-    },
-
-    stopAmbient() {
-      if (!this.ambientRunning || !this.ambientGain) return;
-      try {
-        this.ambientGain.gain.setValueAtTime(this.ambientGain.gain.value, this.ctx.currentTime);
-        this.ambientGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.5);
-        setTimeout(() => {
-          if (this.ambientOsc1) { try { this.ambientOsc1.stop(); } catch(e){} }
-          if (this.ambientOsc2) { try { this.ambientOsc2.stop(); } catch(e){} }
-          this.ambientOsc1 = null;
-          this.ambientOsc2 = null;
-          this.ambientGain = null;
-          this.ambientRunning = false;
-        }, 500);
-      } catch (e) {
-        this.ambientRunning = false;
-      }
-    },
-
-    playBeep(freq = 600, duration = 0.08, type = 'sine') {
+    playBeep(freq = 600, duration = 0.06, type = 'sine') {
       if (!this.enabled || !this.ctx) return;
       try {
         if (this.ctx.state === 'suspended') {
@@ -142,8 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const gain = this.ctx.createGain();
         osc.type = type;
         osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+        
+        gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start();
@@ -153,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     playAlert() {
       if (!this.enabled || !this.ctx) return;
-      this.playBeep(440, 0.15, 'sawtooth');
-      setTimeout(() => this.playBeep(880, 0.2, 'sawtooth'), 120);
+      this.playBeep(440, 0.12, 'sawtooth');
+      setTimeout(() => this.playBeep(880, 0.15, 'sawtooth'), 100);
     }
   };
 
@@ -169,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('click', (e) => {
-    const target = e.target.closest('.btn, .category-card, .camera-btn, .filter-pill, .nav-link, .participant-card, .rule-card, .tab-btn, button, a');
+    const target = e.target.closest('.btn, .category-card, .camera-btn, .filter-pill, .participant-card, .rule-card, .tab-btn, button');
     if (target && !target.closest('#sound-toggle-btn')) {
       AudioEngine.playBeep(650, 0.04);
     }
