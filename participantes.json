@@ -150,5 +150,29 @@
     "file": "./renders de participantes/lilith_om20.png",
     "status": "SUJETO DE PRUEBA / REGISTRADO",
     "type": "humano"
+  },
+  {
+    "id": "21",
+    "name": "RAG TRA 21",
+    "rawName": "RAG_TRA21",
+    "file": "./renders de participantes/RAG_TRA21.png",
+    "status": "SUJETO DE PRUEBA / REGISTRADO",
+    "type": "humano"
+  },
+  {
+    "id": "422",
+    "name": "Marcelyn 0422",
+    "rawName": "marcelyn0422",
+    "file": "./renders de participantes/marcelyn0422.png",
+    "status": "SUJETO DE PRUEBA / REGISTRADO",
+    "type": "humano"
+  },
+  {
+    "id": "423",
+    "name": "Ponchecito 423",
+    "rawName": "ponchecito423",
+    "file": "./renders de participantes/ponchecito423.png",
+    "status": "SUJETO DE PRUEBA / REGISTRADO",
+    "type": "humano"
   }
 ]
