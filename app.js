@@ -1043,7 +1043,6 @@ const participantsData = [
       const customIso = localStorage.getItem('outbreak_custom_event_iso');
       if (customIso) {
         const customDate = new Date(customIso);
-        // Only use custom date if it's still in the future
         if (!isNaN(customDate.getTime()) && customDate.getTime() > Date.now()) {
           return customDate;
         } else {
@@ -1051,23 +1050,22 @@ const participantsData = [
         }
       }
 
-      // Work entirely in UTC to avoid any local timezone interference.
-      // Peru is UTC-5, so "now in Peru" = UTC time - 5h
-      const peruOffsetMs = -5 * 60 * 60 * 1000;
-      const peruNowMs = Date.now() + peruOffsetMs;
-      const peruProxy = new Date(peruNowMs);
+      // Get current date components in Peru (UTC-5)
+      const peruNow = this.getPeruNow();
+      const pYear = peruNow.getFullYear();
+      const pMonth = peruNow.getMonth();
+      const pDate = peruNow.getDate();
 
-      // Target: TODAY at 20:30 Peru time = 01:30 UTC tomorrow
-      const targetMs = Date.UTC(
-        peruProxy.getUTCFullYear(),
-        peruProxy.getUTCMonth(),
-        peruProxy.getUTCDate(),
-        20 + 5, // 20:30 Peru = 01:30 UTC next day (JS wraps hours > 23 automatically)
-        30,
-        0
-      );
+      // Today's 20:30 Peru time in absolute UTC timestamp:
+      // Peru 20:30 on day pDate = UTC 01:30 on day pDate + 1
+      let targetUtcMs = Date.UTC(pYear, pMonth, pDate + 1, 1, 30, 0);
 
-      return new Date(targetMs);
+      // If today's event has already finished (passed by > 3 hours), target tomorrow's 20:30 Peru time
+      if (Date.now() - targetUtcMs > 3 * 3600000) {
+        targetUtcMs = Date.UTC(pYear, pMonth, pDate + 2, 1, 30, 0);
+      }
+
+      return new Date(targetUtcMs);
     },
 
     init() {
