@@ -1047,7 +1047,6 @@ const participantsData = [
         if (!isNaN(customDate.getTime()) && customDate.getTime() > Date.now()) {
           return customDate;
         } else {
-          // Clear stale/past custom date automatically
           localStorage.removeItem('outbreak_custom_event_iso');
         }
       }
@@ -1055,23 +1054,15 @@ const participantsData = [
       // Work entirely in UTC to avoid any local timezone interference.
       // Peru is UTC-5, so "now in Peru" = UTC time - 5h
       const peruOffsetMs = -5 * 60 * 60 * 1000;
-      const nowUtcMs = Date.now();
-      const peruNowMs = nowUtcMs + peruOffsetMs;
-
-      // Build a Date using UTC values to represent "current Peru date"
+      const peruNowMs = Date.now() + peruOffsetMs;
       const peruProxy = new Date(peruNowMs);
 
-      // Tomorrow in Peru = advance by 1 day in UTC
-      const tomorrowPeruProxy = new Date(peruNowMs + 24 * 60 * 60 * 1000);
-
-      // Target: tomorrow at 20:30 Peru time.
-      // In UTC that is: tomorrow's Peru date at hour (20+5)=25 => wraps to 01:30 day after.
-      // Use Date.UTC with the proxy's UTC year/month/date (which represent Peru's date).
+      // Target: TODAY at 20:30 Peru time = 01:30 UTC tomorrow
       const targetMs = Date.UTC(
-        tomorrowPeruProxy.getUTCFullYear(),
-        tomorrowPeruProxy.getUTCMonth(),
-        tomorrowPeruProxy.getUTCDate(),
-        20 + 5, // 20:30 Peru = 01:30 UTC next morning (JS wraps hours > 23 automatically)
+        peruProxy.getUTCFullYear(),
+        peruProxy.getUTCMonth(),
+        peruProxy.getUTCDate(),
+        20 + 5, // 20:30 Peru = 01:30 UTC next day (JS wraps hours > 23 automatically)
         30,
         0
       );
