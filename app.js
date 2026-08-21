@@ -115,110 +115,6 @@ window.REGLAS_TEXT = "📜 REGLAMENTO OFICIAL DEL EVENTO\r\n\r\nArtherius Studio
 const participantsData = [
     {
         "id": "01",
-        "name": "Abdidimc 5",
-        "rawName": "abdidimc5",
-        "file": "./renders de participantes/abdidimc5.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "02",
-        "name": "Alanlitras 15",
-        "rawName": "Alanlitras15",
-        "file": "./renders de participantes/Alanlitras15.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "03",
-        "name": "Andressan 956.4",
-        "rawName": "andressan_956.4",
-        "file": "./renders de participantes/andressan_956.4.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "04",
-        "name": "Cilenxos 7",
-        "rawName": "cilenxos_7",
-        "file": "./renders de participantes/cilenxos_7.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "05",
-        "name": "El Fercho Cpm 3.1",
-        "rawName": "el_fercho_cpm3.1",
-        "file": "./renders de participantes/el_fercho_cpm3.1.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "06",
-        "name": "Fanahuvt 16",
-        "rawName": "fanahuvt16",
-        "file": "./renders de participantes/fanahuvt16.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "07",
-        "name": "Ghostleu 08",
-        "rawName": "ghostleu08",
-        "file": "./renders de participantes/ghostleu08.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "08",
-        "name": "Johan 6",
-        "rawName": "Johan6",
-        "file": "./renders de participantes/Johan6.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "09",
-        "name": "Johan G 10",
-        "rawName": "JohanG10",
-        "file": "./renders de participantes/JohanG10.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "10",
-        "name": "Kevin 13",
-        "rawName": "kevin13",
-        "file": "./renders de participantes/kevin13.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "11",
-        "name": "Legassi 212",
-        "rawName": "legassi_212",
-        "file": "./renders de participantes/legassi_212.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "12",
-        "name": "Luuckykat 11",
-        "rawName": "luuckykat11",
-        "file": "./renders de participantes/luuckykat11.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "13",
-        "name": "Mateo Eck 14",
-        "rawName": "mateo_eck14",
-        "file": "./renders de participantes/mateo_eck14.png",
-        "status": "SUJETO DE PRUEBA / REGISTRADO",
-        "type": "humano"
-    },
-    {
-        "id": "14",
         "name": "Soy Julio 1",
         "rawName": "soy_julio_1",
         "file": "./renders de participantes/soy_julio_1.png",
@@ -226,10 +122,122 @@ const participantsData = [
         "type": "humano"
     },
     {
-        "id": "15",
+        "id": "03",
+        "name": "El Fercho Cpm 3.1",
+        "rawName": "el_fercho_cpm3.1",
+        "file": "./renders de participantes/el_fercho_cpm3.1.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "04",
+        "name": "Andressan 956.4",
+        "rawName": "andressan_956.4",
+        "file": "./renders de participantes/andressan_956.4.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "05",
+        "name": "Abdidimc 5",
+        "rawName": "abdidimc5",
+        "file": "./renders de participantes/abdidimc5.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "06",
+        "name": "Johan 6",
+        "rawName": "Johan6",
+        "file": "./renders de participantes/Johan6.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "07",
+        "name": "Cilenxos 7",
+        "rawName": "cilenxos_7",
+        "file": "./renders de participantes/cilenxos_7.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "08",
+        "name": "Ghostleu 08",
+        "rawName": "ghostleu08",
+        "file": "./renders de participantes/ghostleu08.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "09",
         "name": "Zamora 9",
         "rawName": "zamora9",
         "file": "./renders de participantes/zamora9.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "10",
+        "name": "Johan G 10",
+        "rawName": "JohanG10",
+        "file": "./renders de participantes/JohanG10.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "11",
+        "name": "Luuckykat 11",
+        "rawName": "luuckykat11",
+        "file": "./renders de participantes/luuckykat11.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "12",
+        "name": "Legassi 212",
+        "rawName": "legassi_212",
+        "file": "./renders de participantes/legassi_212.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "13",
+        "name": "Kevin 13",
+        "rawName": "kevin13",
+        "file": "./renders de participantes/kevin13.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "14",
+        "name": "Mateo Eck 14",
+        "rawName": "mateo_eck14",
+        "file": "./renders de participantes/mateo_eck14.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "15",
+        "name": "Alanlitras 15",
+        "rawName": "Alanlitras15",
+        "file": "./renders de participantes/Alanlitras15.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "16",
+        "name": "Fanahuvt 16",
+        "rawName": "fanahuvt16",
+        "file": "./renders de participantes/fanahuvt16.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "17",
+        "name": "Daizenzz 17",
+        "rawName": "daizenzz17",
+        "file": "./renders de participantes/daizenzz17.png",
         "status": "SUJETO DE PRUEBA / REGISTRADO",
         "type": "humano"
     }

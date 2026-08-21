@@ -6,35 +6,63 @@ const rendersDir = path.join(__dirname, 'renders de participantes');
 const reglasTxtPath = path.join(__dirname, 'reglas e indicaciones.txt');
 const scriptPath = path.join(__dirname, 'scan_renders.js');
 
-console.log('👀 Watching "renders de participantes" and "reglas e indicaciones.txt" for changes...');
+console.log('====================================================');
+console.log(' 👀 ARTHERIUS STUDIO - VIGILANTE EN VIVO DE RENDERS');
+console.log('====================================================');
+console.log(`Directorio monitoreado: "${rendersDir}"`);
 
-// Initial run
-try {
-  execSync(`node "${scriptPath}"`, { stdio: 'inherit' });
-} catch (e) {}
+let isRunning = false;
+let lastFileList = [];
 
-// Watch renders folder
+function runScanner() {
+  if (isRunning) return;
+  isRunning = true;
+  try {
+    console.log('\n[VIGILANTE] 🔄 Actualizando sujetos de prueba...');
+    execSync(`node "${scriptPath}"`, { stdio: 'inherit' });
+  } catch (err) {
+    console.error('[VIGILANTE] ❌ Error en escaneo:', err.message);
+  } finally {
+    setTimeout(() => { isRunning = false; }, 300);
+  }
+}
+
+// Initial scan on startup
+runScanner();
+
+// 1. File Watcher on Directory
 if (fs.existsSync(rendersDir)) {
+  let debounceTimeout = null;
   fs.watch(rendersDir, (eventType, filename) => {
     if (filename && /\.(png|jpe?g|webp)$/i.test(filename)) {
-      console.log(`\n🔔 Change detected in folder: "${filename}" (${eventType})`);
-      try {
-        execSync(`node "${scriptPath}"`, { stdio: 'inherit' });
-      } catch (e) {
-        console.error('Error scanning renders:', e.message);
-      }
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(() => {
+        console.log(`[EVENTO FS] Cambio detectado: "${filename}" (${eventType})`);
+        runScanner();
+      }, 150);
     }
   });
 }
 
-// Watch reglas e indicaciones.txt file
+// 2. High-Frequency Polling Fallback (every 800ms) to ensure Windows never misses files
+setInterval(() => {
+  if (!fs.existsSync(rendersDir)) return;
+  try {
+    const currentFiles = fs.readdirSync(rendersDir).filter(f => /\.(png|jpe?g|webp)$/i.test(f)).sort();
+    const currentString = currentFiles.join('|');
+    const lastString = lastFileList.join('|');
+
+    if (currentString !== lastString) {
+      lastFileList = currentFiles;
+      runScanner();
+    }
+  } catch (e) {}
+}, 800);
+
+// 3. Watch reglas e indicaciones.txt
 if (fs.existsSync(reglasTxtPath)) {
   fs.watch(reglasTxtPath, (eventType) => {
-    console.log(`\n🔔 Change detected in "reglas e indicaciones.txt" (${eventType})`);
-    try {
-      execSync(`node "${scriptPath}"`, { stdio: 'inherit' });
-    } catch (e) {
-      console.error('Error scanning rules:', e.message);
-    }
+    console.log(`[EVENTO FS] Reglas modificadas (${eventType})`);
+    runScanner();
   });
 }

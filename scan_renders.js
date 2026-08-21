@@ -13,20 +13,55 @@ if (!fs.existsSync(rendersDir)) {
 
 const files = fs.readdirSync(rendersDir).filter(f => /\.(png|jpe?g|webp)$/i.test(f));
 
-console.log(`Found ${files.length} render files in "renders de participantes":`);
+console.log(`[SCANNER] Escaneando ${files.length} archivos de render en "renders de participantes"...`);
 
-const participantsData = files.map((fileName, idx) => {
-  const id = String(idx + 1).padStart(2, '0');
+function extractNumber(fileName) {
+  const base = fileName.replace(/\.[^/.]+$/, "");
+  const lower = base.toLowerCase();
+
+  if (lower.includes('andressan')) return 4;
+  if (lower.includes('fercho')) return 3;
+  if (lower.includes('legassi')) return 12;
+
+  const dotMatch = base.match(/\.(\d+)$/);
+  if (dotMatch) return parseInt(dotMatch[1], 10);
+
+  const matchTrailing = base.match(/(\d+)$/);
+  if (matchTrailing) {
+    return parseInt(matchTrailing[1], 10);
+  }
+  const matchAny = base.match(/\d+/);
+  return matchAny ? parseInt(matchAny[0], 10) : 9999;
+}
+
+function formatParticipantName(fileName) {
   const rawName = fileName.replace(/\.[^/.]+$/, "");
-  let formattedName = rawName
+  let formatted = rawName
     .replace(/_/g, ' ')
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/([A-Za-z]+)(\d+)/g, '$1 $2')
-    .replace(/\b\w/g, l => l.toUpperCase());
+    .replace(/\b\w/g, l => l.toUpperCase())
+    .trim();
 
   if (/^\d+/.test(rawName)) {
-    formattedName = `Sujeto ${id}`;
+    formatted = `Sujeto ${rawName}`;
   }
+  return formatted;
+}
+
+// Sort files numerically by subject number
+files.sort((a, b) => {
+  const numA = extractNumber(a);
+  const numB = extractNumber(b);
+  if (numA !== numB) return numA - numB;
+  return a.localeCompare(b);
+});
+
+const participantsData = files.map((fileName, idx) => {
+  const num = extractNumber(fileName);
+  const id = num < 9999 ? String(Math.floor(num)).padStart(2, '0') : String(idx + 1).padStart(2, '0');
+  const rawName = fileName.replace(/\.[^/.]+$/, "");
+  const formattedName = formatParticipantName(fileName);
 
   return {
     id,
@@ -77,4 +112,5 @@ if (rStartIndex !== -1 && rEndIndex !== -1) {
 }
 
 fs.writeFileSync(appJsPath, appJsContent, 'utf8');
-console.log(`✅ Sincronización exitosa: ${files.length} renders registrados en app.js y participantes.json!`);
+console.log(`✅ Sincronización completada con éxito: ${participantsData.length} sujetos ordenados y registrados en app.js y participantes.json!`);
+participantsData.forEach(p => console.log(`   - Sujeto #${p.id}: ${p.name} (${p.file})`));
