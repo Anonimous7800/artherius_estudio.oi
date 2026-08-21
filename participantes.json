@@ -126,5 +126,13 @@
     "file": "./renders de participantes/daizenzz17.png",
     "status": "SUJETO DE PRUEBA / REGISTRADO",
     "type": "humano"
+  },
+  {
+    "id": "18",
+    "name": "Vasquez 18",
+    "rawName": "vasquez18",
+    "file": "./renders de participantes/vasquez18.png",
+    "status": "SUJETO DE PRUEBA / REGISTRADO",
+    "type": "humano"
   }
 ]

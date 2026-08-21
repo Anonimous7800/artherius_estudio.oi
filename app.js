@@ -240,6 +240,14 @@ const participantsData = [
         "file": "./renders de participantes/daizenzz17.png",
         "status": "SUJETO DE PRUEBA / REGISTRADO",
         "type": "humano"
+    },
+    {
+        "id": "18",
+        "name": "Vasquez 18",
+        "rawName": "vasquez18",
+        "file": "./renders de participantes/vasquez18.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
     }
 ];
 // --- PARTICIPANTS_DATA_END ---
@@ -931,27 +939,40 @@ const participantsData = [
       const customIso = localStorage.getItem('outbreak_custom_event_iso');
       if (customIso) {
         const customDate = new Date(customIso);
-        if (!isNaN(customDate.getTime())) return customDate;
+        // Only use custom date if it's still in the future
+        if (!isNaN(customDate.getTime()) && customDate.getTime() > Date.now()) {
+          return customDate;
+        } else {
+          // Clear stale/past custom date automatically
+          localStorage.removeItem('outbreak_custom_event_iso');
+        }
       }
 
-      // Default: Mañana a las 8:30 PM (20:30) Hora Perú
-      const peruNow = this.getPeruNow();
-      const target = new Date(peruNow);
-      target.setDate(target.getDate() + 1); // Mañana
-      target.setHours(20, 30, 0, 0); // 8:30 PM
+      // Work entirely in UTC to avoid any local timezone interference.
+      // Peru is UTC-5, so "now in Peru" = UTC time - 5h
+      const peruOffsetMs = -5 * 60 * 60 * 1000;
+      const nowUtcMs = Date.now();
+      const peruNowMs = nowUtcMs + peruOffsetMs;
 
-      // Convert target Peru time back to absolute UTC timestamp
-      // Peru is UTC-5, so UTC timestamp = Date.UTC(year, month, date, 20 + 5, 30, 0)
-      const targetUtcMs = Date.UTC(
-        target.getFullYear(),
-        target.getMonth(),
-        target.getDate(),
-        20 + 5, // 20:30 Peru + 5h = 01:30 UTC next day
+      // Build a Date using UTC values to represent "current Peru date"
+      const peruProxy = new Date(peruNowMs);
+
+      // Tomorrow in Peru = advance by 1 day in UTC
+      const tomorrowPeruProxy = new Date(peruNowMs + 24 * 60 * 60 * 1000);
+
+      // Target: tomorrow at 20:30 Peru time.
+      // In UTC that is: tomorrow's Peru date at hour (20+5)=25 => wraps to 01:30 day after.
+      // Use Date.UTC with the proxy's UTC year/month/date (which represent Peru's date).
+      const targetMs = Date.UTC(
+        tomorrowPeruProxy.getUTCFullYear(),
+        tomorrowPeruProxy.getUTCMonth(),
+        tomorrowPeruProxy.getUTCDate(),
+        20 + 5, // 20:30 Peru = 01:30 UTC next morning (JS wraps hours > 23 automatically)
         30,
         0
       );
 
-      return new Date(targetUtcMs);
+      return new Date(targetMs);
     },
 
     init() {
