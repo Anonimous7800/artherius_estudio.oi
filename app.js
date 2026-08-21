@@ -122,6 +122,14 @@ const participantsData = [
         "type": "humano"
     },
     {
+        "id": "02",
+        "name": "Star 2",
+        "rawName": "star2",
+        "file": "./renders de participantes/star2.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
         "id": "03",
         "name": "El Fercho Cpm 3.1",
         "rawName": "el_fercho_cpm3.1",
