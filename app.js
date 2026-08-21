@@ -248,6 +248,22 @@ const participantsData = [
         "file": "./renders de participantes/vasquez18.png",
         "status": "SUJETO DE PRUEBA / REGISTRADO",
         "type": "humano"
+    },
+    {
+        "id": "19",
+        "name": "Adrian 489 19",
+        "rawName": "adrian489_19",
+        "file": "./renders de participantes/adrian489_19.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "20",
+        "name": "Lilith Om 20",
+        "rawName": "lilith_om20",
+        "file": "./renders de participantes/lilith_om20.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
     }
 ];
 // --- PARTICIPANTS_DATA_END ---
