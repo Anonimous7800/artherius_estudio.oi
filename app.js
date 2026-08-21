@@ -115,6 +115,14 @@ window.REGLAS_TEXT = "📜 REGLAMENTO OFICIAL DEL EVENTO\r\n\r\nArtherius Studio
 const participantsData = [
     {
         "id": "01",
+        "name": "Hiro 001",
+        "rawName": "Hiro001",
+        "file": "./renders de participantes/Hiro001.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "01",
         "name": "Soy Julio 1",
         "rawName": "soy_julio_1",
         "file": "./renders de participantes/soy_julio_1.png",
@@ -274,6 +282,54 @@ const participantsData = [
         "type": "humano"
     },
     {
+        "id": "24",
+        "name": "Elbrotis 24",
+        "rawName": "elbrotis24",
+        "file": "./renders de participantes/elbrotis24.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "25",
+        "name": "Donald Cito 25",
+        "rawName": "donald_cito25",
+        "file": "./renders de participantes/donald_cito25.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "26",
+        "name": "Nniks Mc 26",
+        "rawName": "nniks_mc26",
+        "file": "./renders de participantes/nniks_mc26.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "28",
+        "name": "Kokushiboplayer 28",
+        "rawName": "kokushiboplayer28",
+        "file": "./renders de participantes/kokushiboplayer28.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "29",
+        "name": "Heyit Syiyi 29",
+        "rawName": "heyit_syiyi29",
+        "file": "./renders de participantes/heyit_syiyi29.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "30",
+        "name": "Miss. .Diablo 30",
+        "rawName": "miss._.diablo30",
+        "file": "./renders de participantes/miss._.diablo30.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
         "id": "422",
         "name": "Marcelyn 0422",
         "rawName": "marcelyn0422",
@@ -286,6 +342,14 @@ const participantsData = [
         "name": "Ponchecito 423",
         "rawName": "ponchecito423",
         "file": "./renders de participantes/ponchecito423.png",
+        "status": "SUJETO DE PRUEBA / REGISTRADO",
+        "type": "humano"
+    },
+    {
+        "id": "30",
+        "name": "Christian Dark 57327",
+        "rawName": "ChristianDark57327",
+        "file": "./renders de participantes/ChristianDark57327.png",
         "status": "SUJETO DE PRUEBA / REGISTRADO",
         "type": "humano"
     }
