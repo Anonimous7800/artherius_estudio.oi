@@ -913,7 +913,7 @@ const participantsData = [
   }
 
   // ==========================================================================
-  // EVENT COUNTDOWN ENGINE (9:00 PM HORA PERÚ // UTC-5)
+  // EVENT COUNTDOWN ENGINE (8:30 PM HORA PERÚ // UTC-5)
   // ==========================================================================
   const CountdownEngine = {
     timerInterval: null,
@@ -934,24 +934,20 @@ const participantsData = [
         if (!isNaN(customDate.getTime())) return customDate;
       }
 
-      // Default: Next 9:00 PM (21:00) Hora Perú
+      // Default: Mañana a las 8:30 PM (20:30) Hora Perú
       const peruNow = this.getPeruNow();
       const target = new Date(peruNow);
-      target.setHours(21, 0, 0, 0);
-
-      // If today's 21:00 Peru time has already passed by more than 3 hours, set to next day 21:00
-      if (peruNow.getTime() - target.getTime() > 3 * 3600000) {
-        target.setDate(target.getDate() + 1);
-      }
+      target.setDate(target.getDate() + 1); // Mañana
+      target.setHours(20, 30, 0, 0); // 8:30 PM
 
       // Convert target Peru time back to absolute UTC timestamp
-      // Peru is UTC-5, so UTC timestamp = Date.UTC(year, month, date, 21 + 5, 0, 0)
+      // Peru is UTC-5, so UTC timestamp = Date.UTC(year, month, date, 20 + 5, 30, 0)
       const targetUtcMs = Date.UTC(
         target.getFullYear(),
         target.getMonth(),
         target.getDate(),
-        21 + 5, // 21:00 Peru + 5h = 02:00 UTC next day
-        0,
+        20 + 5, // 20:30 Peru + 5h = 01:30 UTC next day
+        30,
         0
       );
 
@@ -1038,7 +1034,7 @@ const participantsData = [
       let phaseClass = 'alert-phase-info';
       let phaseIcon = 'fa-circle-info';
       let phaseTitle = 'ESTADO: PREPARACIÓN & CONVOCATORIA';
-      let phaseDesc = 'El evento oficial iniciará a las 9:00 PM Hora Perú (UTC-5). Los servidores y el staff están preparando la simulación de Outbreak City.';
+      let phaseDesc = 'El evento oficial iniciará mañana a las 8:30 PM Hora Perú (UTC-5). Los servidores y el staff están preparando la simulación de Outbreak City.';
       let isUrgent = false;
 
       if (diff > 0) {
@@ -1053,7 +1049,7 @@ const participantsData = [
           phaseClass = 'alert-phase-info';
           phaseIcon = 'fa-satellite-dish';
           phaseTitle = 'ESTADO: CONCENTRACIÓN Y REGISTRO';
-          phaseDesc = 'Revisa las fichas de los 13 participantes registrados y lee atentamente el reglamento oficial.';
+          phaseDesc = 'Revisa las fichas de los participantes registrados y lee atentamente el reglamento oficial.';
         } else if (totalMinutesLeft > 60) {
           phaseClass = 'alert-phase-warning';
           phaseIcon = 'fa-triangle-exclamation';
